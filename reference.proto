@@ -3,6 +3,7 @@ syntax = "proto3";
 package reference;
 
 import "google/protobuf/timestamp.proto";
+import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
 
 option go_package = "github.com/sologenic/com-fs-reference-model;reference";
 
@@ -13,7 +14,7 @@ message Reference {
     string ReferenceKey = 4;
     google.protobuf.Timestamp CreatedAt = 5;
     google.protobuf.Timestamp UpdatedAt = 6;
-    string Network = 7;
+    metadata.Network Network = 7;
     VoteType VoteType = 8;
     string OrganizationID = 9; // UUID
 }

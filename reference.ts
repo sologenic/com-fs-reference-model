@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
+import { Network, networkFromJSON, networkToJSON } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 
 export const protobufPackage = "reference";
 
@@ -152,7 +153,7 @@ export interface Reference {
   ReferenceKey: string;
   CreatedAt: Date | undefined;
   UpdatedAt: Date | undefined;
-  Network: string;
+  Network: Network;
   VoteType: VoteType;
   /** UUID */
   OrganizationID: string;
@@ -223,7 +224,7 @@ function createBaseReference(): Reference {
     ReferenceKey: "",
     CreatedAt: undefined,
     UpdatedAt: undefined,
-    Network: "",
+    Network: 0,
     VoteType: 0,
     OrganizationID: "",
   };
@@ -249,8 +250,8 @@ export const Reference = {
     if (message.UpdatedAt !== undefined) {
       Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(50).fork()).ldelim();
     }
-    if (message.Network !== "") {
-      writer.uint32(58).string(message.Network);
+    if (message.Network !== 0) {
+      writer.uint32(56).int32(message.Network);
     }
     if (message.VoteType !== 0) {
       writer.uint32(64).int32(message.VoteType);
@@ -311,11 +312,11 @@ export const Reference = {
           message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           continue;
         case 7:
-          if (tag !== 58) {
+          if (tag !== 56) {
             break;
           }
 
-          message.Network = reader.string();
+          message.Network = reader.int32() as any;
           continue;
         case 8:
           if (tag !== 64) {
@@ -348,7 +349,7 @@ export const Reference = {
       ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
       CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
       UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
-      Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
       VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
       OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
     };
@@ -374,8 +375,8 @@ export const Reference = {
     if (message.UpdatedAt !== undefined) {
       obj.UpdatedAt = message.UpdatedAt.toISOString();
     }
-    if (message.Network !== "") {
-      obj.Network = message.Network;
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
     }
     if (message.VoteType !== 0) {
       obj.VoteType = voteTypeToJSON(message.VoteType);
@@ -397,7 +398,7 @@ export const Reference = {
     message.ReferenceKey = object.ReferenceKey ?? "";
     message.CreatedAt = object.CreatedAt ?? undefined;
     message.UpdatedAt = object.UpdatedAt ?? undefined;
-    message.Network = object.Network ?? "";
+    message.Network = object.Network ?? 0;
     message.VoteType = object.VoteType ?? 0;
     message.OrganizationID = object.OrganizationID ?? "";
     return message;

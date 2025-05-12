@@ -8,6 +8,7 @@ exports.Count = exports.Counts = exports.StatsOption = exports.CountOption = exp
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const timestamp_1 = require("./google/protobuf/timestamp");
+const metadata_1 = require("./sologenic/com-fs-utils-lib/models/metadata/metadata");
 exports.protobufPackage = "reference";
 var ReferenceType;
 (function (ReferenceType) {
@@ -157,7 +158,7 @@ function createBaseReference() {
         ReferenceKey: "",
         CreatedAt: undefined,
         UpdatedAt: undefined,
-        Network: "",
+        Network: 0,
         VoteType: 0,
         OrganizationID: "",
     };
@@ -182,8 +183,8 @@ exports.Reference = {
         if (message.UpdatedAt !== undefined) {
             timestamp_1.Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(50).fork()).ldelim();
         }
-        if (message.Network !== "") {
-            writer.uint32(58).string(message.Network);
+        if (message.Network !== 0) {
+            writer.uint32(56).int32(message.Network);
         }
         if (message.VoteType !== 0) {
             writer.uint32(64).int32(message.VoteType);
@@ -237,10 +238,10 @@ exports.Reference = {
                     message.UpdatedAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     continue;
                 case 7:
-                    if (tag !== 58) {
+                    if (tag !== 56) {
                         break;
                     }
-                    message.Network = reader.string();
+                    message.Network = reader.int32();
                     continue;
                 case 8:
                     if (tag !== 64) {
@@ -270,7 +271,7 @@ exports.Reference = {
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
             CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
             UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
-            Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+            Network: isSet(object.Network) ? (0, metadata_1.networkFromJSON)(object.Network) : 0,
             VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
             OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
         };
@@ -295,8 +296,8 @@ exports.Reference = {
         if (message.UpdatedAt !== undefined) {
             obj.UpdatedAt = message.UpdatedAt.toISOString();
         }
-        if (message.Network !== "") {
-            obj.Network = message.Network;
+        if (message.Network !== 0) {
+            obj.Network = (0, metadata_1.networkToJSON)(message.Network);
         }
         if (message.VoteType !== 0) {
             obj.VoteType = voteTypeToJSON(message.VoteType);
@@ -318,7 +319,7 @@ exports.Reference = {
         message.ReferenceKey = (_d = object.ReferenceKey) !== null && _d !== void 0 ? _d : "";
         message.CreatedAt = (_e = object.CreatedAt) !== null && _e !== void 0 ? _e : undefined;
         message.UpdatedAt = (_f = object.UpdatedAt) !== null && _f !== void 0 ? _f : undefined;
-        message.Network = (_g = object.Network) !== null && _g !== void 0 ? _g : "";
+        message.Network = (_g = object.Network) !== null && _g !== void 0 ? _g : 0;
         message.VoteType = (_h = object.VoteType) !== null && _h !== void 0 ? _h : 0;
         message.OrganizationID = (_j = object.OrganizationID) !== null && _j !== void 0 ? _j : "";
         return message;

@@ -1,4 +1,5 @@
 import _m0 from "protobufjs/minimal";
+import { Network } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export declare const protobufPackage = "reference";
 export declare enum ReferenceType {
     DO_NOT_USE = 0,
@@ -39,7 +40,7 @@ export interface Reference {
     ReferenceKey: string;
     CreatedAt: Date | undefined;
     UpdatedAt: Date | undefined;
-    Network: string;
+    Network: Network;
     VoteType: VoteType;
     /** UUID */
     OrganizationID: string;
@@ -105,7 +106,7 @@ export declare const Reference: {
         ReferenceKey?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: string | undefined;
+        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & {
@@ -115,7 +116,7 @@ export declare const Reference: {
         ReferenceKey?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: string | undefined;
+        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & { [K in Exclude<keyof I, keyof Reference>]: never; }>(base?: I | undefined): Reference;
@@ -126,7 +127,7 @@ export declare const Reference: {
         ReferenceKey?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: string | undefined;
+        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & {
@@ -136,7 +137,7 @@ export declare const Reference: {
         ReferenceKey?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: string | undefined;
+        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof Reference>]: never; }>(object: I_1): Reference;
@@ -206,7 +207,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         }[] | undefined;
@@ -218,7 +219,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         }[] & ({
@@ -228,7 +229,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & {
@@ -238,7 +239,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & { [K in Exclude<keyof I["References"][number], keyof Reference>]: never; })[] & { [K_1 in Exclude<keyof I["References"], keyof {
@@ -248,7 +249,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         }[]>]: never; }) | undefined;
@@ -261,7 +262,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         }[] | undefined;
@@ -273,7 +274,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         }[] & ({
@@ -283,7 +284,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & {
@@ -293,7 +294,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & { [K_3 in Exclude<keyof I_1["References"][number], keyof Reference>]: never; })[] & { [K_4 in Exclude<keyof I_1["References"], keyof {
@@ -303,7 +304,7 @@ export declare const References: {
             ReferenceKey?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: string | undefined;
+            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         }[]>]: never; }) | undefined;
