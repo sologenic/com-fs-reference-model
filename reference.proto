@@ -23,13 +23,13 @@ message ID {
     string Account = 1;
     string ReferenceKey = 2;
     ReferenceType ReferenceType = 3;
-    string Network = 4;
+    metadata.Network Network = 4;
     string OrganizationID = 5; // UUID
 }
 
 message ReferenceID {
     int64 ReferenceID = 1;
-    string Network = 2;
+    metadata.Network Network = 2;
 }
 
 enum ReferenceType {
@@ -56,14 +56,14 @@ message SelectOptions {
     int32 Limit = 3;
     ReferenceType ReferenceType = 4;
     repeated string ReferenceKey = 5;
-    string Network = 6;
+    metadata.Network Network = 6;
     string OrganizationID = 7; // UUID
 }
 
 message CountOption {
     string Account = 1;
     ReferenceType ReferenceType = 2;
-    string Network = 3;
+    metadata.Network Network = 3;
     repeated string ReferenceKey = 4;
     optional VoteType VoteType = 5;
 }
@@ -71,7 +71,7 @@ message CountOption {
 message StatsOption {
     Period Period = 1;
     ReferenceType ReferenceType = 2;
-    string Network = 3;
+    metadata.Network Network = 3;
     repeated string ReferenceKey = 4;
     optional VoteType VoteType = 5;
 }
@@ -84,7 +84,7 @@ message Count {
     int64 Count = 1;
     ReferenceType ReferenceType = 2;
     string ReferenceKey = 3;
-    string Network = 4;
+    metadata.Network Network = 4;
     VoteType VoteType = 5;
 }
 

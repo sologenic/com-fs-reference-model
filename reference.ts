@@ -163,14 +163,14 @@ export interface ID {
   Account: string;
   ReferenceKey: string;
   ReferenceType: ReferenceType;
-  Network: string;
+  Network: Network;
   /** UUID */
   OrganizationID: string;
 }
 
 export interface ReferenceID {
   ReferenceID: number;
-  Network: string;
+  Network: Network;
 }
 
 export interface References {
@@ -183,7 +183,7 @@ export interface SelectOptions {
   Limit: number;
   ReferenceType: ReferenceType;
   ReferenceKey: string[];
-  Network: string;
+  Network: Network;
   /** UUID */
   OrganizationID: string;
 }
@@ -191,7 +191,7 @@ export interface SelectOptions {
 export interface CountOption {
   Account: string;
   ReferenceType: ReferenceType;
-  Network: string;
+  Network: Network;
   ReferenceKey: string[];
   VoteType?: VoteType | undefined;
 }
@@ -199,7 +199,7 @@ export interface CountOption {
 export interface StatsOption {
   Period: Period;
   ReferenceType: ReferenceType;
-  Network: string;
+  Network: Network;
   ReferenceKey: string[];
   VoteType?: VoteType | undefined;
 }
@@ -212,7 +212,7 @@ export interface Count {
   Count: number;
   ReferenceType: ReferenceType;
   ReferenceKey: string;
-  Network: string;
+  Network: Network;
   VoteType: VoteType;
 }
 
@@ -406,7 +406,7 @@ export const Reference = {
 };
 
 function createBaseID(): ID {
-  return { Account: "", ReferenceKey: "", ReferenceType: 0, Network: "", OrganizationID: "" };
+  return { Account: "", ReferenceKey: "", ReferenceType: 0, Network: 0, OrganizationID: "" };
 }
 
 export const ID = {
@@ -420,8 +420,8 @@ export const ID = {
     if (message.ReferenceType !== 0) {
       writer.uint32(24).int32(message.ReferenceType);
     }
-    if (message.Network !== "") {
-      writer.uint32(34).string(message.Network);
+    if (message.Network !== 0) {
+      writer.uint32(32).int32(message.Network);
     }
     if (message.OrganizationID !== "") {
       writer.uint32(42).string(message.OrganizationID);
@@ -458,11 +458,11 @@ export const ID = {
           message.ReferenceType = reader.int32() as any;
           continue;
         case 4:
-          if (tag !== 34) {
+          if (tag !== 32) {
             break;
           }
 
-          message.Network = reader.string();
+          message.Network = reader.int32() as any;
           continue;
         case 5:
           if (tag !== 42) {
@@ -485,7 +485,7 @@ export const ID = {
       Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
       ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
-      Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
       OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
     };
   },
@@ -501,8 +501,8 @@ export const ID = {
     if (message.ReferenceType !== 0) {
       obj.ReferenceType = referenceTypeToJSON(message.ReferenceType);
     }
-    if (message.Network !== "") {
-      obj.Network = message.Network;
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
     }
     if (message.OrganizationID !== "") {
       obj.OrganizationID = message.OrganizationID;
@@ -518,14 +518,14 @@ export const ID = {
     message.Account = object.Account ?? "";
     message.ReferenceKey = object.ReferenceKey ?? "";
     message.ReferenceType = object.ReferenceType ?? 0;
-    message.Network = object.Network ?? "";
+    message.Network = object.Network ?? 0;
     message.OrganizationID = object.OrganizationID ?? "";
     return message;
   },
 };
 
 function createBaseReferenceID(): ReferenceID {
-  return { ReferenceID: 0, Network: "" };
+  return { ReferenceID: 0, Network: 0 };
 }
 
 export const ReferenceID = {
@@ -533,8 +533,8 @@ export const ReferenceID = {
     if (message.ReferenceID !== 0) {
       writer.uint32(8).int64(message.ReferenceID);
     }
-    if (message.Network !== "") {
-      writer.uint32(18).string(message.Network);
+    if (message.Network !== 0) {
+      writer.uint32(16).int32(message.Network);
     }
     return writer;
   },
@@ -554,11 +554,11 @@ export const ReferenceID = {
           message.ReferenceID = longToNumber(reader.int64() as Long);
           continue;
         case 2:
-          if (tag !== 18) {
+          if (tag !== 16) {
             break;
           }
 
-          message.Network = reader.string();
+          message.Network = reader.int32() as any;
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -572,7 +572,7 @@ export const ReferenceID = {
   fromJSON(object: any): ReferenceID {
     return {
       ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
-      Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
     };
   },
 
@@ -581,8 +581,8 @@ export const ReferenceID = {
     if (message.ReferenceID !== 0) {
       obj.ReferenceID = Math.round(message.ReferenceID);
     }
-    if (message.Network !== "") {
-      obj.Network = message.Network;
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
     }
     return obj;
   },
@@ -593,7 +593,7 @@ export const ReferenceID = {
   fromPartial<I extends Exact<DeepPartial<ReferenceID>, I>>(object: I): ReferenceID {
     const message = createBaseReferenceID();
     message.ReferenceID = object.ReferenceID ?? 0;
-    message.Network = object.Network ?? "";
+    message.Network = object.Network ?? 0;
     return message;
   },
 };
@@ -666,7 +666,7 @@ function createBaseSelectOptions(): SelectOptions {
     Limit: 0,
     ReferenceType: 0,
     ReferenceKey: [],
-    Network: "",
+    Network: 0,
     OrganizationID: "",
   };
 }
@@ -688,8 +688,8 @@ export const SelectOptions = {
     for (const v of message.ReferenceKey) {
       writer.uint32(42).string(v!);
     }
-    if (message.Network !== "") {
-      writer.uint32(50).string(message.Network);
+    if (message.Network !== 0) {
+      writer.uint32(48).int32(message.Network);
     }
     if (message.OrganizationID !== "") {
       writer.uint32(58).string(message.OrganizationID);
@@ -740,11 +740,11 @@ export const SelectOptions = {
           message.ReferenceKey.push(reader.string());
           continue;
         case 6:
-          if (tag !== 50) {
+          if (tag !== 48) {
             break;
           }
 
-          message.Network = reader.string();
+          message.Network = reader.int32() as any;
           continue;
         case 7:
           if (tag !== 58) {
@@ -771,7 +771,7 @@ export const SelectOptions = {
       ReferenceKey: globalThis.Array.isArray(object?.ReferenceKey)
         ? object.ReferenceKey.map((e: any) => globalThis.String(e))
         : [],
-      Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
       OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
     };
   },
@@ -793,8 +793,8 @@ export const SelectOptions = {
     if (message.ReferenceKey?.length) {
       obj.ReferenceKey = message.ReferenceKey;
     }
-    if (message.Network !== "") {
-      obj.Network = message.Network;
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
     }
     if (message.OrganizationID !== "") {
       obj.OrganizationID = message.OrganizationID;
@@ -812,14 +812,14 @@ export const SelectOptions = {
     message.Limit = object.Limit ?? 0;
     message.ReferenceType = object.ReferenceType ?? 0;
     message.ReferenceKey = object.ReferenceKey?.map((e) => e) || [];
-    message.Network = object.Network ?? "";
+    message.Network = object.Network ?? 0;
     message.OrganizationID = object.OrganizationID ?? "";
     return message;
   },
 };
 
 function createBaseCountOption(): CountOption {
-  return { Account: "", ReferenceType: 0, Network: "", ReferenceKey: [], VoteType: undefined };
+  return { Account: "", ReferenceType: 0, Network: 0, ReferenceKey: [], VoteType: undefined };
 }
 
 export const CountOption = {
@@ -830,8 +830,8 @@ export const CountOption = {
     if (message.ReferenceType !== 0) {
       writer.uint32(16).int32(message.ReferenceType);
     }
-    if (message.Network !== "") {
-      writer.uint32(26).string(message.Network);
+    if (message.Network !== 0) {
+      writer.uint32(24).int32(message.Network);
     }
     for (const v of message.ReferenceKey) {
       writer.uint32(34).string(v!);
@@ -864,11 +864,11 @@ export const CountOption = {
           message.ReferenceType = reader.int32() as any;
           continue;
         case 3:
-          if (tag !== 26) {
+          if (tag !== 24) {
             break;
           }
 
-          message.Network = reader.string();
+          message.Network = reader.int32() as any;
           continue;
         case 4:
           if (tag !== 34) {
@@ -897,7 +897,7 @@ export const CountOption = {
     return {
       Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
-      Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
       ReferenceKey: globalThis.Array.isArray(object?.ReferenceKey)
         ? object.ReferenceKey.map((e: any) => globalThis.String(e))
         : [],
@@ -913,8 +913,8 @@ export const CountOption = {
     if (message.ReferenceType !== 0) {
       obj.ReferenceType = referenceTypeToJSON(message.ReferenceType);
     }
-    if (message.Network !== "") {
-      obj.Network = message.Network;
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
     }
     if (message.ReferenceKey?.length) {
       obj.ReferenceKey = message.ReferenceKey;
@@ -932,7 +932,7 @@ export const CountOption = {
     const message = createBaseCountOption();
     message.Account = object.Account ?? "";
     message.ReferenceType = object.ReferenceType ?? 0;
-    message.Network = object.Network ?? "";
+    message.Network = object.Network ?? 0;
     message.ReferenceKey = object.ReferenceKey?.map((e) => e) || [];
     message.VoteType = object.VoteType ?? undefined;
     return message;
@@ -940,7 +940,7 @@ export const CountOption = {
 };
 
 function createBaseStatsOption(): StatsOption {
-  return { Period: 0, ReferenceType: 0, Network: "", ReferenceKey: [], VoteType: undefined };
+  return { Period: 0, ReferenceType: 0, Network: 0, ReferenceKey: [], VoteType: undefined };
 }
 
 export const StatsOption = {
@@ -951,8 +951,8 @@ export const StatsOption = {
     if (message.ReferenceType !== 0) {
       writer.uint32(16).int32(message.ReferenceType);
     }
-    if (message.Network !== "") {
-      writer.uint32(26).string(message.Network);
+    if (message.Network !== 0) {
+      writer.uint32(24).int32(message.Network);
     }
     for (const v of message.ReferenceKey) {
       writer.uint32(34).string(v!);
@@ -985,11 +985,11 @@ export const StatsOption = {
           message.ReferenceType = reader.int32() as any;
           continue;
         case 3:
-          if (tag !== 26) {
+          if (tag !== 24) {
             break;
           }
 
-          message.Network = reader.string();
+          message.Network = reader.int32() as any;
           continue;
         case 4:
           if (tag !== 34) {
@@ -1018,7 +1018,7 @@ export const StatsOption = {
     return {
       Period: isSet(object.Period) ? periodFromJSON(object.Period) : 0,
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
-      Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
       ReferenceKey: globalThis.Array.isArray(object?.ReferenceKey)
         ? object.ReferenceKey.map((e: any) => globalThis.String(e))
         : [],
@@ -1034,8 +1034,8 @@ export const StatsOption = {
     if (message.ReferenceType !== 0) {
       obj.ReferenceType = referenceTypeToJSON(message.ReferenceType);
     }
-    if (message.Network !== "") {
-      obj.Network = message.Network;
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
     }
     if (message.ReferenceKey?.length) {
       obj.ReferenceKey = message.ReferenceKey;
@@ -1053,7 +1053,7 @@ export const StatsOption = {
     const message = createBaseStatsOption();
     message.Period = object.Period ?? 0;
     message.ReferenceType = object.ReferenceType ?? 0;
-    message.Network = object.Network ?? "";
+    message.Network = object.Network ?? 0;
     message.ReferenceKey = object.ReferenceKey?.map((e) => e) || [];
     message.VoteType = object.VoteType ?? undefined;
     return message;
@@ -1118,7 +1118,7 @@ export const Counts = {
 };
 
 function createBaseCount(): Count {
-  return { Count: 0, ReferenceType: 0, ReferenceKey: "", Network: "", VoteType: 0 };
+  return { Count: 0, ReferenceType: 0, ReferenceKey: "", Network: 0, VoteType: 0 };
 }
 
 export const Count = {
@@ -1132,8 +1132,8 @@ export const Count = {
     if (message.ReferenceKey !== "") {
       writer.uint32(26).string(message.ReferenceKey);
     }
-    if (message.Network !== "") {
-      writer.uint32(34).string(message.Network);
+    if (message.Network !== 0) {
+      writer.uint32(32).int32(message.Network);
     }
     if (message.VoteType !== 0) {
       writer.uint32(40).int32(message.VoteType);
@@ -1170,11 +1170,11 @@ export const Count = {
           message.ReferenceKey = reader.string();
           continue;
         case 4:
-          if (tag !== 34) {
+          if (tag !== 32) {
             break;
           }
 
-          message.Network = reader.string();
+          message.Network = reader.int32() as any;
           continue;
         case 5:
           if (tag !== 40) {
@@ -1197,7 +1197,7 @@ export const Count = {
       Count: isSet(object.Count) ? globalThis.Number(object.Count) : 0,
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
       ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
-      Network: isSet(object.Network) ? globalThis.String(object.Network) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
       VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
     };
   },
@@ -1213,8 +1213,8 @@ export const Count = {
     if (message.ReferenceKey !== "") {
       obj.ReferenceKey = message.ReferenceKey;
     }
-    if (message.Network !== "") {
-      obj.Network = message.Network;
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
     }
     if (message.VoteType !== 0) {
       obj.VoteType = voteTypeToJSON(message.VoteType);
@@ -1230,7 +1230,7 @@ export const Count = {
     message.Count = object.Count ?? 0;
     message.ReferenceType = object.ReferenceType ?? 0;
     message.ReferenceKey = object.ReferenceKey ?? "";
-    message.Network = object.Network ?? "";
+    message.Network = object.Network ?? 0;
     message.VoteType = object.VoteType ?? 0;
     return message;
   },
