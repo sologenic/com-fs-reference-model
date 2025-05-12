@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package reference;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/sologenic/com-fs-reference-model;reference";
+
+message Reference {
+    int64 ReferenceID = 1;
+    string Account = 2;
+    ReferenceType ReferenceType = 3;
+    string ReferenceKey = 4;
+    google.protobuf.Timestamp CreatedAt = 5;
+    google.protobuf.Timestamp UpdatedAt = 6;
+    string Network = 7;
+    VoteType VoteType = 8;
+    string OrganizationID = 9; // UUID
+}
+
+message ID {
+    string Account = 1;
+    string ReferenceKey = 2;
+    ReferenceType ReferenceType = 3;
+    string Network = 4;
+    string OrganizationID = 5; // UUID
+}
+
+message ReferenceID {
+    int64 ReferenceID = 1;
+    string Network = 2;
+}
+
+enum ReferenceType {
+    DO_NOT_USE = 0;
+    ASSET_FOLLOW = 1; // Follow a single asset
+    COMMENT_ID = 2; // Liked comments
+    ASSET_ID = 3; // Liked asset
+    ASSET_VOTE = 4; // Trust upvote/downvote
+}
+
+enum VoteType {
+    NOT_APPLICABLE = 0; // Default value if it is not an UPVOTE or DOWNVOTE
+    UPVOTE = 1;
+    DOWNVOTE = 2;
+}
+
+message References {
+    repeated Reference References = 1;
+}
+
+message SelectOptions {
+    string Account = 1;
+    int64 BeforeReferenceID = 2;
+    int32 Limit = 3;
+    ReferenceType ReferenceType = 4;
+    repeated string ReferenceKey = 5;
+    string Network = 6;
+    string OrganizationID = 7; // UUID
+}
+
+message CountOption {
+    string Account = 1;
+    ReferenceType ReferenceType = 2;
+    string Network = 3;
+    repeated string ReferenceKey = 4;
+    optional VoteType VoteType = 5;
+}
+
+message StatsOption {
+    Period Period = 1;
+    ReferenceType ReferenceType = 2;
+    string Network = 3;
+    repeated string ReferenceKey = 4;
+    optional VoteType VoteType = 5;
+}
+
+message Counts {
+    repeated Count Counts = 1;
+}
+
+message Count {
+    int64 Count = 1;
+    ReferenceType ReferenceType = 2;
+    string ReferenceKey = 3;
+    string Network = 4;
+    VoteType VoteType = 5;
+}
+
+enum Period {
+    ALL_TIME = 0;
+    DAY = 1;
+    DAY_7 = 2;
+    DAY_30 = 3;
+}
