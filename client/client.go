@@ -17,9 +17,8 @@ package client
 import (
 	"context"
 
-	grpcclient "github.com/sologenic/com-fs-utils-lib
-/go/grpc-client"
 	grpcdef "github.com/sologenic/com-fs-reference-model"
+	grpcclient "github.com/sologenic/com-fs-utils-lib/go/grpc-client"
 )
 
 const endpoint = "REFERENCE_STORE"
