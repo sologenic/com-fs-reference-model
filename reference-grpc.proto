@@ -14,7 +14,7 @@ service ReferenceService {
     rpc Delete(ID) returns (google.protobuf.Empty) {}
 
     rpc Get(SelectOptions) returns (References) {}
-    rpc GetByKey(ReferenceID) returns (Reference) {}
+    rpc GetByKey(ReferenceKey) returns (Reference) {}
 
     // Count references for a given account and type
     rpc CountReferences(CountOption) returns (Counts) {}

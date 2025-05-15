@@ -36,7 +36,7 @@ type ReferenceServiceClient interface {
 	Upsert(ctx context.Context, in *Reference, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Delete(ctx context.Context, in *ID, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Get(ctx context.Context, in *SelectOptions, opts ...grpc.CallOption) (*References, error)
-	GetByKey(ctx context.Context, in *ReferenceID, opts ...grpc.CallOption) (*Reference, error)
+	GetByKey(ctx context.Context, in *ReferenceKey, opts ...grpc.CallOption) (*Reference, error)
 	// Count references for a given account and type
 	CountReferences(ctx context.Context, in *CountOption, opts ...grpc.CallOption) (*Counts, error)
 	// Count references for a given type, key and period
@@ -81,7 +81,7 @@ func (c *referenceServiceClient) Get(ctx context.Context, in *SelectOptions, opt
 	return out, nil
 }
 
-func (c *referenceServiceClient) GetByKey(ctx context.Context, in *ReferenceID, opts ...grpc.CallOption) (*Reference, error) {
+func (c *referenceServiceClient) GetByKey(ctx context.Context, in *ReferenceKey, opts ...grpc.CallOption) (*Reference, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Reference)
 	err := c.cc.Invoke(ctx, ReferenceService_GetByKey_FullMethodName, in, out, cOpts...)
@@ -119,7 +119,7 @@ type ReferenceServiceServer interface {
 	Upsert(context.Context, *Reference) (*emptypb.Empty, error)
 	Delete(context.Context, *ID) (*emptypb.Empty, error)
 	Get(context.Context, *SelectOptions) (*References, error)
-	GetByKey(context.Context, *ReferenceID) (*Reference, error)
+	GetByKey(context.Context, *ReferenceKey) (*Reference, error)
 	// Count references for a given account and type
 	CountReferences(context.Context, *CountOption) (*Counts, error)
 	// Count references for a given type, key and period
@@ -142,7 +142,7 @@ func (UnimplementedReferenceServiceServer) Delete(context.Context, *ID) (*emptyp
 func (UnimplementedReferenceServiceServer) Get(context.Context, *SelectOptions) (*References, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedReferenceServiceServer) GetByKey(context.Context, *ReferenceID) (*Reference, error) {
+func (UnimplementedReferenceServiceServer) GetByKey(context.Context, *ReferenceKey) (*Reference, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByKey not implemented")
 }
 func (UnimplementedReferenceServiceServer) CountReferences(context.Context, *CountOption) (*Counts, error) {
@@ -226,7 +226,7 @@ func _ReferenceService_Get_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _ReferenceService_GetByKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReferenceID)
+	in := new(ReferenceKey)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -238,7 +238,7 @@ func _ReferenceService_GetByKey_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: ReferenceService_GetByKey_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReferenceServiceServer).GetByKey(ctx, req.(*ReferenceID))
+		return srv.(ReferenceServiceServer).GetByKey(ctx, req.(*ReferenceKey))
 	}
 	return interceptor(ctx, in, info, handler)
 }

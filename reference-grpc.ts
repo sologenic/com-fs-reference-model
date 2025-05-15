@@ -9,7 +9,7 @@ import type {
   UntypedServiceImplementation,
 } from "@grpc/grpc-js";
 import { Empty } from "./google/protobuf/Empty";
-import { CountOption, Counts, ID, Reference, ReferenceID, References, SelectOptions, StatsOption } from "./reference";
+import { CountOption, Counts, ID, Reference, ReferenceKey, References, SelectOptions, StatsOption } from "./reference";
 
 export const protobufPackage = "reference";
 
@@ -47,8 +47,8 @@ export const ReferenceServiceService = {
     path: "/reference.ReferenceService/GetByKey",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: ReferenceID) => Buffer.from(ReferenceID.encode(value).finish()),
-    requestDeserialize: (value: Buffer) => ReferenceID.decode(value),
+    requestSerialize: (value: ReferenceKey) => Buffer.from(ReferenceKey.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => ReferenceKey.decode(value),
     responseSerialize: (value: Reference) => Buffer.from(Reference.encode(value).finish()),
     responseDeserialize: (value: Buffer) => Reference.decode(value),
   },
@@ -79,7 +79,7 @@ export interface ReferenceServiceServer extends UntypedServiceImplementation {
   upsert: handleUnaryCall<Reference, Empty>;
   delete: handleUnaryCall<ID, Empty>;
   get: handleUnaryCall<SelectOptions, References>;
-  getByKey: handleUnaryCall<ReferenceID, Reference>;
+  getByKey: handleUnaryCall<ReferenceKey, Reference>;
   /** Count references for a given account and type */
   countReferences: handleUnaryCall<CountOption, Counts>;
   /** Count references for a given type, key and period */
@@ -124,14 +124,14 @@ export interface ReferenceServiceClient extends Client {
     options: Partial<CallOptions>,
     callback: (error: ServiceError | null, response: References) => void,
   ): ClientUnaryCall;
-  getByKey(request: ReferenceID, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
+  getByKey(request: ReferenceKey, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
   getByKey(
-    request: ReferenceID,
+    request: ReferenceKey,
     metadata: Metadata,
     callback: (error: ServiceError | null, response: Reference) => void,
   ): ClientUnaryCall;
   getByKey(
-    request: ReferenceID,
+    request: ReferenceKey,
     metadata: Metadata,
     options: Partial<CallOptions>,
     callback: (error: ServiceError | null, response: Reference) => void,
