@@ -60,7 +60,7 @@ message References {
 
 message SelectOptions {
     string Account = 1;
-    int64 BeforeReferenceID = 2;
+    string BeforeReferenceID = 2;
     int32 Limit = 3;
     ReferenceType ReferenceType = 4;
     repeated string ReferenceKey = 5;
