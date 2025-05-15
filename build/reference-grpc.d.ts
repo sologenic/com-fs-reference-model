@@ -34,8 +34,8 @@ export declare const ReferenceServiceService: {
         readonly responseSerialize: (value: References) => Buffer;
         readonly responseDeserialize: (value: Buffer) => References;
     };
-    readonly getById: {
-        readonly path: "/reference.ReferenceService/GetByID";
+    readonly getByKey: {
+        readonly path: "/reference.ReferenceService/GetByKey";
         readonly requestStream: false;
         readonly responseStream: false;
         readonly requestSerialize: (value: ReferenceID) => Buffer;
@@ -69,7 +69,7 @@ export interface ReferenceServiceServer extends UntypedServiceImplementation {
     upsert: handleUnaryCall<Reference, Empty>;
     delete: handleUnaryCall<ID, Empty>;
     get: handleUnaryCall<SelectOptions, References>;
-    getById: handleUnaryCall<ReferenceID, Reference>;
+    getByKey: handleUnaryCall<ReferenceID, Reference>;
     /** Count references for a given account and type */
     countReferences: handleUnaryCall<CountOption, Counts>;
     /** Count references for a given type, key and period */
@@ -86,9 +86,9 @@ export interface ReferenceServiceClient extends Client {
     get(request: SelectOptions, callback: (error: ServiceError | null, response: References) => void): ClientUnaryCall;
     get(request: SelectOptions, metadata: Metadata, callback: (error: ServiceError | null, response: References) => void): ClientUnaryCall;
     get(request: SelectOptions, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: References) => void): ClientUnaryCall;
-    getById(request: ReferenceID, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
-    getById(request: ReferenceID, metadata: Metadata, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
-    getById(request: ReferenceID, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
+    getByKey(request: ReferenceID, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
+    getByKey(request: ReferenceID, metadata: Metadata, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
+    getByKey(request: ReferenceID, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
     /** Count references for a given account and type */
     countReferences(request: CountOption, callback: (error: ServiceError | null, response: Counts) => void): ClientUnaryCall;
     countReferences(request: CountOption, metadata: Metadata, callback: (error: ServiceError | null, response: Counts) => void): ClientUnaryCall;

@@ -35,8 +35,8 @@ exports.ReferenceServiceService = {
         responseSerialize: (value) => Buffer.from(reference_1.References.encode(value).finish()),
         responseDeserialize: (value) => reference_1.References.decode(value),
     },
-    getById: {
-        path: "/reference.ReferenceService/GetByID",
+    getByKey: {
+        path: "/reference.ReferenceService/GetByKey",
         requestStream: false,
         responseStream: false,
         requestSerialize: (value) => Buffer.from(reference_1.ReferenceID.encode(value).finish()),

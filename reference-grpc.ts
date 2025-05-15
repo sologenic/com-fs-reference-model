@@ -43,8 +43,8 @@ export const ReferenceServiceService = {
     responseSerialize: (value: References) => Buffer.from(References.encode(value).finish()),
     responseDeserialize: (value: Buffer) => References.decode(value),
   },
-  getById: {
-    path: "/reference.ReferenceService/GetByID",
+  getByKey: {
+    path: "/reference.ReferenceService/GetByKey",
     requestStream: false,
     responseStream: false,
     requestSerialize: (value: ReferenceID) => Buffer.from(ReferenceID.encode(value).finish()),
@@ -79,7 +79,7 @@ export interface ReferenceServiceServer extends UntypedServiceImplementation {
   upsert: handleUnaryCall<Reference, Empty>;
   delete: handleUnaryCall<ID, Empty>;
   get: handleUnaryCall<SelectOptions, References>;
-  getById: handleUnaryCall<ReferenceID, Reference>;
+  getByKey: handleUnaryCall<ReferenceID, Reference>;
   /** Count references for a given account and type */
   countReferences: handleUnaryCall<CountOption, Counts>;
   /** Count references for a given type, key and period */
@@ -124,13 +124,13 @@ export interface ReferenceServiceClient extends Client {
     options: Partial<CallOptions>,
     callback: (error: ServiceError | null, response: References) => void,
   ): ClientUnaryCall;
-  getById(request: ReferenceID, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
-  getById(
+  getByKey(request: ReferenceID, callback: (error: ServiceError | null, response: Reference) => void): ClientUnaryCall;
+  getByKey(
     request: ReferenceID,
     metadata: Metadata,
     callback: (error: ServiceError | null, response: Reference) => void,
   ): ClientUnaryCall;
-  getById(
+  getByKey(
     request: ReferenceID,
     metadata: Metadata,
     options: Partial<CallOptions>,
