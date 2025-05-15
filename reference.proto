@@ -16,7 +16,7 @@ message Reference {
 }
 
 message ReferenceDetails {
-    int64 ReferenceID = 1;
+    string ReferenceID = 1;
     string Account = 2;
     ReferenceType ReferenceType = 3;
     string ReferenceKey = 4;
@@ -36,7 +36,7 @@ message ID {
 }
 
 message ReferenceID {
-    int64 ReferenceID = 1;
+    string ReferenceID = 1;
     metadata.Network Network = 2;
 }
 
