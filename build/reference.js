@@ -645,7 +645,7 @@ exports.References = {
 function createBaseSelectOptions() {
     return {
         Account: "",
-        BeforeReferenceID: "",
+        BeforeReferenceID: 0,
         Limit: 0,
         ReferenceType: 0,
         ReferenceKey: [],
@@ -658,8 +658,8 @@ exports.SelectOptions = {
         if (message.Account !== "") {
             writer.uint32(10).string(message.Account);
         }
-        if (message.BeforeReferenceID !== "") {
-            writer.uint32(18).string(message.BeforeReferenceID);
+        if (message.BeforeReferenceID !== 0) {
+            writer.uint32(16).int64(message.BeforeReferenceID);
         }
         if (message.Limit !== 0) {
             writer.uint32(24).int32(message.Limit);
@@ -692,10 +692,10 @@ exports.SelectOptions = {
                     message.Account = reader.string();
                     continue;
                 case 2:
-                    if (tag !== 18) {
+                    if (tag !== 16) {
                         break;
                     }
-                    message.BeforeReferenceID = reader.string();
+                    message.BeforeReferenceID = longToNumber(reader.int64());
                     continue;
                 case 3:
                     if (tag !== 24) {
@@ -738,7 +738,7 @@ exports.SelectOptions = {
     fromJSON(object) {
         return {
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
-            BeforeReferenceID: isSet(object.BeforeReferenceID) ? globalThis.String(object.BeforeReferenceID) : "",
+            BeforeReferenceID: isSet(object.BeforeReferenceID) ? globalThis.Number(object.BeforeReferenceID) : 0,
             Limit: isSet(object.Limit) ? globalThis.Number(object.Limit) : 0,
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
             ReferenceKey: globalThis.Array.isArray(object === null || object === void 0 ? void 0 : object.ReferenceKey)
@@ -754,8 +754,8 @@ exports.SelectOptions = {
         if (message.Account !== "") {
             obj.Account = message.Account;
         }
-        if (message.BeforeReferenceID !== "") {
-            obj.BeforeReferenceID = message.BeforeReferenceID;
+        if (message.BeforeReferenceID !== 0) {
+            obj.BeforeReferenceID = Math.round(message.BeforeReferenceID);
         }
         if (message.Limit !== 0) {
             obj.Limit = Math.round(message.Limit);
@@ -781,7 +781,7 @@ exports.SelectOptions = {
         var _a, _b, _c, _d, _e, _f, _g;
         const message = createBaseSelectOptions();
         message.Account = (_a = object.Account) !== null && _a !== void 0 ? _a : "";
-        message.BeforeReferenceID = (_b = object.BeforeReferenceID) !== null && _b !== void 0 ? _b : "";
+        message.BeforeReferenceID = (_b = object.BeforeReferenceID) !== null && _b !== void 0 ? _b : 0;
         message.Limit = (_c = object.Limit) !== null && _c !== void 0 ? _c : 0;
         message.ReferenceType = (_d = object.ReferenceType) !== null && _d !== void 0 ? _d : 0;
         message.ReferenceKey = ((_e = object.ReferenceKey) === null || _e === void 0 ? void 0 : _e.map((e) => e)) || [];

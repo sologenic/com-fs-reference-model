@@ -68,7 +68,7 @@ export interface References {
 }
 export interface SelectOptions {
     Account: string;
-    BeforeReferenceID: string;
+    BeforeReferenceID: number;
     Limit: number;
     ReferenceType: ReferenceType;
     ReferenceKey: string[];
@@ -629,7 +629,7 @@ export declare const SelectOptions: {
     toJSON(message: SelectOptions): unknown;
     create<I extends {
         Account?: string | undefined;
-        BeforeReferenceID?: string | undefined;
+        BeforeReferenceID?: number | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string[] | undefined;
@@ -637,7 +637,7 @@ export declare const SelectOptions: {
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
-        BeforeReferenceID?: string | undefined;
+        BeforeReferenceID?: number | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: (string[] & string[] & { [K in Exclude<keyof I["ReferenceKey"], keyof string[]>]: never; }) | undefined;
@@ -646,7 +646,7 @@ export declare const SelectOptions: {
     } & { [K_1 in Exclude<keyof I, keyof SelectOptions>]: never; }>(base?: I | undefined): SelectOptions;
     fromPartial<I_1 extends {
         Account?: string | undefined;
-        BeforeReferenceID?: string | undefined;
+        BeforeReferenceID?: number | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string[] | undefined;
@@ -654,7 +654,7 @@ export declare const SelectOptions: {
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
-        BeforeReferenceID?: string | undefined;
+        BeforeReferenceID?: number | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: (string[] & string[] & { [K_2 in Exclude<keyof I_1["ReferenceKey"], keyof string[]>]: never; }) | undefined;
