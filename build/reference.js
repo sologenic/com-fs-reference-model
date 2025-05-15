@@ -237,7 +237,7 @@ exports.Reference = {
 };
 function createBaseReferenceDetails() {
     return {
-        ReferenceID: 0,
+        ReferenceID: "",
         Account: "",
         ReferenceType: 0,
         ReferenceKey: "",
@@ -250,8 +250,8 @@ function createBaseReferenceDetails() {
 }
 exports.ReferenceDetails = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ReferenceID !== 0) {
-            writer.uint32(8).int64(message.ReferenceID);
+        if (message.ReferenceID !== "") {
+            writer.uint32(10).string(message.ReferenceID);
         }
         if (message.Account !== "") {
             writer.uint32(18).string(message.Account);
@@ -287,10 +287,10 @@ exports.ReferenceDetails = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.ReferenceID = longToNumber(reader.int64());
+                    message.ReferenceID = reader.string();
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -350,7 +350,7 @@ exports.ReferenceDetails = {
     },
     fromJSON(object) {
         return {
-            ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
+            ReferenceID: isSet(object.ReferenceID) ? globalThis.String(object.ReferenceID) : "",
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
@@ -363,8 +363,8 @@ exports.ReferenceDetails = {
     },
     toJSON(message) {
         const obj = {};
-        if (message.ReferenceID !== 0) {
-            obj.ReferenceID = Math.round(message.ReferenceID);
+        if (message.ReferenceID !== "") {
+            obj.ReferenceID = message.ReferenceID;
         }
         if (message.Account !== "") {
             obj.Account = message.Account;
@@ -398,7 +398,7 @@ exports.ReferenceDetails = {
     fromPartial(object) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         const message = createBaseReferenceDetails();
-        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : 0;
+        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : "";
         message.Account = (_b = object.Account) !== null && _b !== void 0 ? _b : "";
         message.ReferenceType = (_c = object.ReferenceType) !== null && _c !== void 0 ? _c : 0;
         message.ReferenceKey = (_d = object.ReferenceKey) !== null && _d !== void 0 ? _d : "";
@@ -520,12 +520,12 @@ exports.ID = {
     },
 };
 function createBaseReferenceID() {
-    return { ReferenceID: 0, Network: 0 };
+    return { ReferenceID: "", Network: 0 };
 }
 exports.ReferenceID = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ReferenceID !== 0) {
-            writer.uint32(8).int64(message.ReferenceID);
+        if (message.ReferenceID !== "") {
+            writer.uint32(10).string(message.ReferenceID);
         }
         if (message.Network !== 0) {
             writer.uint32(16).int32(message.Network);
@@ -540,10 +540,10 @@ exports.ReferenceID = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 8) {
+                    if (tag !== 10) {
                         break;
                     }
-                    message.ReferenceID = longToNumber(reader.int64());
+                    message.ReferenceID = reader.string();
                     continue;
                 case 2:
                     if (tag !== 16) {
@@ -561,14 +561,14 @@ exports.ReferenceID = {
     },
     fromJSON(object) {
         return {
-            ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
+            ReferenceID: isSet(object.ReferenceID) ? globalThis.String(object.ReferenceID) : "",
             Network: isSet(object.Network) ? (0, metadata_1.networkFromJSON)(object.Network) : 0,
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.ReferenceID !== 0) {
-            obj.ReferenceID = Math.round(message.ReferenceID);
+        if (message.ReferenceID !== "") {
+            obj.ReferenceID = message.ReferenceID;
         }
         if (message.Network !== 0) {
             obj.Network = (0, metadata_1.networkToJSON)(message.Network);
@@ -581,7 +581,7 @@ exports.ReferenceID = {
     fromPartial(object) {
         var _a, _b;
         const message = createBaseReferenceID();
-        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : 0;
+        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : "";
         message.Network = (_b = object.Network) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
@@ -645,7 +645,7 @@ exports.References = {
 function createBaseSelectOptions() {
     return {
         Account: "",
-        BeforeReferenceID: 0,
+        BeforeReferenceID: "",
         Limit: 0,
         ReferenceType: 0,
         ReferenceKey: [],
@@ -658,8 +658,8 @@ exports.SelectOptions = {
         if (message.Account !== "") {
             writer.uint32(10).string(message.Account);
         }
-        if (message.BeforeReferenceID !== 0) {
-            writer.uint32(16).int64(message.BeforeReferenceID);
+        if (message.BeforeReferenceID !== "") {
+            writer.uint32(18).string(message.BeforeReferenceID);
         }
         if (message.Limit !== 0) {
             writer.uint32(24).int32(message.Limit);
@@ -692,10 +692,10 @@ exports.SelectOptions = {
                     message.Account = reader.string();
                     continue;
                 case 2:
-                    if (tag !== 16) {
+                    if (tag !== 18) {
                         break;
                     }
-                    message.BeforeReferenceID = longToNumber(reader.int64());
+                    message.BeforeReferenceID = reader.string();
                     continue;
                 case 3:
                     if (tag !== 24) {
@@ -738,7 +738,7 @@ exports.SelectOptions = {
     fromJSON(object) {
         return {
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
-            BeforeReferenceID: isSet(object.BeforeReferenceID) ? globalThis.Number(object.BeforeReferenceID) : 0,
+            BeforeReferenceID: isSet(object.BeforeReferenceID) ? globalThis.String(object.BeforeReferenceID) : "",
             Limit: isSet(object.Limit) ? globalThis.Number(object.Limit) : 0,
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
             ReferenceKey: globalThis.Array.isArray(object === null || object === void 0 ? void 0 : object.ReferenceKey)
@@ -754,8 +754,8 @@ exports.SelectOptions = {
         if (message.Account !== "") {
             obj.Account = message.Account;
         }
-        if (message.BeforeReferenceID !== 0) {
-            obj.BeforeReferenceID = Math.round(message.BeforeReferenceID);
+        if (message.BeforeReferenceID !== "") {
+            obj.BeforeReferenceID = message.BeforeReferenceID;
         }
         if (message.Limit !== 0) {
             obj.Limit = Math.round(message.Limit);
@@ -781,7 +781,7 @@ exports.SelectOptions = {
         var _a, _b, _c, _d, _e, _f, _g;
         const message = createBaseSelectOptions();
         message.Account = (_a = object.Account) !== null && _a !== void 0 ? _a : "";
-        message.BeforeReferenceID = (_b = object.BeforeReferenceID) !== null && _b !== void 0 ? _b : 0;
+        message.BeforeReferenceID = (_b = object.BeforeReferenceID) !== null && _b !== void 0 ? _b : "";
         message.Limit = (_c = object.Limit) !== null && _c !== void 0 ? _c : 0;
         message.ReferenceType = (_d = object.ReferenceType) !== null && _d !== void 0 ? _d : 0;
         message.ReferenceKey = ((_e = object.ReferenceKey) === null || _e === void 0 ? void 0 : _e.map((e) => e)) || [];

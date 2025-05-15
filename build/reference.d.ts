@@ -40,7 +40,7 @@ export interface Reference {
     Audit: Audit | undefined;
 }
 export interface ReferenceDetails {
-    ReferenceID: number;
+    ReferenceID: string;
     Account: string;
     ReferenceType: ReferenceType;
     ReferenceKey: string;
@@ -60,7 +60,7 @@ export interface ID {
     OrganizationID: string;
 }
 export interface ReferenceID {
-    ReferenceID: number;
+    ReferenceID: string;
     Network: Network;
 }
 export interface References {
@@ -68,7 +68,7 @@ export interface References {
 }
 export interface SelectOptions {
     Account: string;
-    BeforeReferenceID: number;
+    BeforeReferenceID: string;
     Limit: number;
     ReferenceType: ReferenceType;
     ReferenceKey: string[];
@@ -107,7 +107,7 @@ export declare const Reference: {
     toJSON(message: Reference): unknown;
     create<I extends {
         Reference?: {
-            ReferenceID?: number | undefined;
+            ReferenceID?: string | undefined;
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
@@ -130,7 +130,7 @@ export declare const Reference: {
         } | undefined;
     } & {
         Reference?: ({
-            ReferenceID?: number | undefined;
+            ReferenceID?: string | undefined;
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
@@ -140,7 +140,7 @@ export declare const Reference: {
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & {
-            ReferenceID?: number | undefined;
+            ReferenceID?: string | undefined;
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
@@ -173,7 +173,7 @@ export declare const Reference: {
     } & { [K_3 in Exclude<keyof I, keyof Reference>]: never; }>(base?: I | undefined): Reference;
     fromPartial<I_1 extends {
         Reference?: {
-            ReferenceID?: number | undefined;
+            ReferenceID?: string | undefined;
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
@@ -196,7 +196,7 @@ export declare const Reference: {
         } | undefined;
     } & {
         Reference?: ({
-            ReferenceID?: number | undefined;
+            ReferenceID?: string | undefined;
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
@@ -206,7 +206,7 @@ export declare const Reference: {
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & {
-            ReferenceID?: number | undefined;
+            ReferenceID?: string | undefined;
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
@@ -244,7 +244,7 @@ export declare const ReferenceDetails: {
     fromJSON(object: any): ReferenceDetails;
     toJSON(message: ReferenceDetails): unknown;
     create<I extends {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
@@ -254,7 +254,7 @@ export declare const ReferenceDetails: {
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
@@ -265,7 +265,7 @@ export declare const ReferenceDetails: {
         OrganizationID?: string | undefined;
     } & { [K in Exclude<keyof I, keyof ReferenceDetails>]: never; }>(base?: I | undefined): ReferenceDetails;
     fromPartial<I_1 extends {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
@@ -275,7 +275,7 @@ export declare const ReferenceDetails: {
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
@@ -324,17 +324,17 @@ export declare const ReferenceID: {
     fromJSON(object: any): ReferenceID;
     toJSON(message: ReferenceID): unknown;
     create<I extends {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Network?: Network | undefined;
     } & {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Network?: Network | undefined;
     } & { [K in Exclude<keyof I, keyof ReferenceID>]: never; }>(base?: I | undefined): ReferenceID;
     fromPartial<I_1 extends {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Network?: Network | undefined;
     } & {
-        ReferenceID?: number | undefined;
+        ReferenceID?: string | undefined;
         Network?: Network | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof ReferenceID>]: never; }>(object: I_1): ReferenceID;
 };
@@ -346,7 +346,7 @@ export declare const References: {
     create<I extends {
         References?: {
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -371,7 +371,7 @@ export declare const References: {
     } & {
         References?: ({
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -394,7 +394,7 @@ export declare const References: {
             } | undefined;
         }[] & ({
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -417,7 +417,7 @@ export declare const References: {
             } | undefined;
         } & {
             Reference?: ({
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -427,7 +427,7 @@ export declare const References: {
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } & {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -459,7 +459,7 @@ export declare const References: {
             } & { [K_2 in Exclude<keyof I["References"][number]["Audit"], keyof Audit>]: never; }) | undefined;
         } & { [K_3 in Exclude<keyof I["References"][number], keyof Reference>]: never; })[] & { [K_4 in Exclude<keyof I["References"], keyof {
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -485,7 +485,7 @@ export declare const References: {
     fromPartial<I_1 extends {
         References?: {
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -510,7 +510,7 @@ export declare const References: {
     } & {
         References?: ({
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -533,7 +533,7 @@ export declare const References: {
             } | undefined;
         }[] & ({
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -556,7 +556,7 @@ export declare const References: {
             } | undefined;
         } & {
             Reference?: ({
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -566,7 +566,7 @@ export declare const References: {
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } & {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -598,7 +598,7 @@ export declare const References: {
             } & { [K_8 in Exclude<keyof I_1["References"][number]["Audit"], keyof Audit>]: never; }) | undefined;
         } & { [K_9 in Exclude<keyof I_1["References"][number], keyof Reference>]: never; })[] & { [K_10 in Exclude<keyof I_1["References"], keyof {
             Reference?: {
-                ReferenceID?: number | undefined;
+                ReferenceID?: string | undefined;
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
@@ -629,7 +629,7 @@ export declare const SelectOptions: {
     toJSON(message: SelectOptions): unknown;
     create<I extends {
         Account?: string | undefined;
-        BeforeReferenceID?: number | undefined;
+        BeforeReferenceID?: string | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string[] | undefined;
@@ -637,7 +637,7 @@ export declare const SelectOptions: {
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
-        BeforeReferenceID?: number | undefined;
+        BeforeReferenceID?: string | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: (string[] & string[] & { [K in Exclude<keyof I["ReferenceKey"], keyof string[]>]: never; }) | undefined;
@@ -646,7 +646,7 @@ export declare const SelectOptions: {
     } & { [K_1 in Exclude<keyof I, keyof SelectOptions>]: never; }>(base?: I | undefined): SelectOptions;
     fromPartial<I_1 extends {
         Account?: string | undefined;
-        BeforeReferenceID?: number | undefined;
+        BeforeReferenceID?: string | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string[] | undefined;
@@ -654,7 +654,7 @@ export declare const SelectOptions: {
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
-        BeforeReferenceID?: number | undefined;
+        BeforeReferenceID?: string | undefined;
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: (string[] & string[] & { [K_2 in Exclude<keyof I_1["ReferenceKey"], keyof string[]>]: never; }) | undefined;

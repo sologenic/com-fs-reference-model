@@ -159,7 +159,7 @@ export interface Reference {
 }
 
 export interface ReferenceDetails {
-  ReferenceID: number;
+  ReferenceID: string;
   Account: string;
   ReferenceType: ReferenceType;
   ReferenceKey: string;
@@ -181,7 +181,7 @@ export interface ID {
 }
 
 export interface ReferenceID {
-  ReferenceID: number;
+  ReferenceID: string;
   Network: Network;
 }
 
@@ -191,7 +191,7 @@ export interface References {
 
 export interface SelectOptions {
   Account: string;
-  BeforeReferenceID: number;
+  BeforeReferenceID: string;
   Limit: number;
   ReferenceType: ReferenceType;
   ReferenceKey: string[];
@@ -323,7 +323,7 @@ export const Reference = {
 
 function createBaseReferenceDetails(): ReferenceDetails {
   return {
-    ReferenceID: 0,
+    ReferenceID: "",
     Account: "",
     ReferenceType: 0,
     ReferenceKey: "",
@@ -337,8 +337,8 @@ function createBaseReferenceDetails(): ReferenceDetails {
 
 export const ReferenceDetails = {
   encode(message: ReferenceDetails, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ReferenceID !== 0) {
-      writer.uint32(8).int64(message.ReferenceID);
+    if (message.ReferenceID !== "") {
+      writer.uint32(10).string(message.ReferenceID);
     }
     if (message.Account !== "") {
       writer.uint32(18).string(message.Account);
@@ -375,11 +375,11 @@ export const ReferenceDetails = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.ReferenceID = longToNumber(reader.int64() as Long);
+          message.ReferenceID = reader.string();
           continue;
         case 2:
           if (tag !== 18) {
@@ -448,7 +448,7 @@ export const ReferenceDetails = {
 
   fromJSON(object: any): ReferenceDetails {
     return {
-      ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
+      ReferenceID: isSet(object.ReferenceID) ? globalThis.String(object.ReferenceID) : "",
       Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
       ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
@@ -462,8 +462,8 @@ export const ReferenceDetails = {
 
   toJSON(message: ReferenceDetails): unknown {
     const obj: any = {};
-    if (message.ReferenceID !== 0) {
-      obj.ReferenceID = Math.round(message.ReferenceID);
+    if (message.ReferenceID !== "") {
+      obj.ReferenceID = message.ReferenceID;
     }
     if (message.Account !== "") {
       obj.Account = message.Account;
@@ -497,7 +497,7 @@ export const ReferenceDetails = {
   },
   fromPartial<I extends Exact<DeepPartial<ReferenceDetails>, I>>(object: I): ReferenceDetails {
     const message = createBaseReferenceDetails();
-    message.ReferenceID = object.ReferenceID ?? 0;
+    message.ReferenceID = object.ReferenceID ?? "";
     message.Account = object.Account ?? "";
     message.ReferenceType = object.ReferenceType ?? 0;
     message.ReferenceKey = object.ReferenceKey ?? "";
@@ -630,13 +630,13 @@ export const ID = {
 };
 
 function createBaseReferenceID(): ReferenceID {
-  return { ReferenceID: 0, Network: 0 };
+  return { ReferenceID: "", Network: 0 };
 }
 
 export const ReferenceID = {
   encode(message: ReferenceID, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.ReferenceID !== 0) {
-      writer.uint32(8).int64(message.ReferenceID);
+    if (message.ReferenceID !== "") {
+      writer.uint32(10).string(message.ReferenceID);
     }
     if (message.Network !== 0) {
       writer.uint32(16).int32(message.Network);
@@ -652,11 +652,11 @@ export const ReferenceID = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 8) {
+          if (tag !== 10) {
             break;
           }
 
-          message.ReferenceID = longToNumber(reader.int64() as Long);
+          message.ReferenceID = reader.string();
           continue;
         case 2:
           if (tag !== 16) {
@@ -676,15 +676,15 @@ export const ReferenceID = {
 
   fromJSON(object: any): ReferenceID {
     return {
-      ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
+      ReferenceID: isSet(object.ReferenceID) ? globalThis.String(object.ReferenceID) : "",
       Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
     };
   },
 
   toJSON(message: ReferenceID): unknown {
     const obj: any = {};
-    if (message.ReferenceID !== 0) {
-      obj.ReferenceID = Math.round(message.ReferenceID);
+    if (message.ReferenceID !== "") {
+      obj.ReferenceID = message.ReferenceID;
     }
     if (message.Network !== 0) {
       obj.Network = networkToJSON(message.Network);
@@ -697,7 +697,7 @@ export const ReferenceID = {
   },
   fromPartial<I extends Exact<DeepPartial<ReferenceID>, I>>(object: I): ReferenceID {
     const message = createBaseReferenceID();
-    message.ReferenceID = object.ReferenceID ?? 0;
+    message.ReferenceID = object.ReferenceID ?? "";
     message.Network = object.Network ?? 0;
     return message;
   },
@@ -767,7 +767,7 @@ export const References = {
 function createBaseSelectOptions(): SelectOptions {
   return {
     Account: "",
-    BeforeReferenceID: 0,
+    BeforeReferenceID: "",
     Limit: 0,
     ReferenceType: 0,
     ReferenceKey: [],
@@ -781,8 +781,8 @@ export const SelectOptions = {
     if (message.Account !== "") {
       writer.uint32(10).string(message.Account);
     }
-    if (message.BeforeReferenceID !== 0) {
-      writer.uint32(16).int64(message.BeforeReferenceID);
+    if (message.BeforeReferenceID !== "") {
+      writer.uint32(18).string(message.BeforeReferenceID);
     }
     if (message.Limit !== 0) {
       writer.uint32(24).int32(message.Limit);
@@ -817,11 +817,11 @@ export const SelectOptions = {
           message.Account = reader.string();
           continue;
         case 2:
-          if (tag !== 16) {
+          if (tag !== 18) {
             break;
           }
 
-          message.BeforeReferenceID = longToNumber(reader.int64() as Long);
+          message.BeforeReferenceID = reader.string();
           continue;
         case 3:
           if (tag !== 24) {
@@ -870,7 +870,7 @@ export const SelectOptions = {
   fromJSON(object: any): SelectOptions {
     return {
       Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
-      BeforeReferenceID: isSet(object.BeforeReferenceID) ? globalThis.Number(object.BeforeReferenceID) : 0,
+      BeforeReferenceID: isSet(object.BeforeReferenceID) ? globalThis.String(object.BeforeReferenceID) : "",
       Limit: isSet(object.Limit) ? globalThis.Number(object.Limit) : 0,
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
       ReferenceKey: globalThis.Array.isArray(object?.ReferenceKey)
@@ -886,8 +886,8 @@ export const SelectOptions = {
     if (message.Account !== "") {
       obj.Account = message.Account;
     }
-    if (message.BeforeReferenceID !== 0) {
-      obj.BeforeReferenceID = Math.round(message.BeforeReferenceID);
+    if (message.BeforeReferenceID !== "") {
+      obj.BeforeReferenceID = message.BeforeReferenceID;
     }
     if (message.Limit !== 0) {
       obj.Limit = Math.round(message.Limit);
@@ -913,7 +913,7 @@ export const SelectOptions = {
   fromPartial<I extends Exact<DeepPartial<SelectOptions>, I>>(object: I): SelectOptions {
     const message = createBaseSelectOptions();
     message.Account = object.Account ?? "";
-    message.BeforeReferenceID = object.BeforeReferenceID ?? 0;
+    message.BeforeReferenceID = object.BeforeReferenceID ?? "";
     message.Limit = object.Limit ?? 0;
     message.ReferenceType = object.ReferenceType ?? 0;
     message.ReferenceKey = object.ReferenceKey?.map((e) => e) || [];
