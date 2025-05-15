@@ -185,6 +185,11 @@ export interface ReferenceID {
   Network: Network;
 }
 
+export interface ReferenceKey {
+  ReferenceKey: string;
+  Network: Network;
+}
+
 export interface References {
   References: Reference[];
 }
@@ -698,6 +703,80 @@ export const ReferenceID = {
   fromPartial<I extends Exact<DeepPartial<ReferenceID>, I>>(object: I): ReferenceID {
     const message = createBaseReferenceID();
     message.ReferenceID = object.ReferenceID ?? "";
+    message.Network = object.Network ?? 0;
+    return message;
+  },
+};
+
+function createBaseReferenceKey(): ReferenceKey {
+  return { ReferenceKey: "", Network: 0 };
+}
+
+export const ReferenceKey = {
+  encode(message: ReferenceKey, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ReferenceKey !== "") {
+      writer.uint32(10).string(message.ReferenceKey);
+    }
+    if (message.Network !== 0) {
+      writer.uint32(16).int32(message.Network);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ReferenceKey {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseReferenceKey();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.ReferenceKey = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.Network = reader.int32() as any;
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): ReferenceKey {
+    return {
+      ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
+      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
+    };
+  },
+
+  toJSON(message: ReferenceKey): unknown {
+    const obj: any = {};
+    if (message.ReferenceKey !== "") {
+      obj.ReferenceKey = message.ReferenceKey;
+    }
+    if (message.Network !== 0) {
+      obj.Network = networkToJSON(message.Network);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<ReferenceKey>, I>>(base?: I): ReferenceKey {
+    return ReferenceKey.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<ReferenceKey>, I>>(object: I): ReferenceKey {
+    const message = createBaseReferenceKey();
+    message.ReferenceKey = object.ReferenceKey ?? "";
     message.Network = object.Network ?? 0;
     return message;
   },

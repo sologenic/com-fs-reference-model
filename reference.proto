@@ -40,6 +40,11 @@ message ReferenceID {
     metadata.Network Network = 2;
 }
 
+message ReferenceKey {
+    string ReferenceKey = 1;
+    metadata.Network Network = 2;
+}
+
 enum ReferenceType {
     DO_NOT_USE = 0;
     ASSET_FOLLOW = 1; // Follow a single asset
