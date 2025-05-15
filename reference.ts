@@ -2,7 +2,13 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
-import { Network, networkFromJSON, networkToJSON } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
+import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
+import {
+  MetaData,
+  Network,
+  networkFromJSON,
+  networkToJSON,
+} from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 
 export const protobufPackage = "reference";
 
@@ -147,6 +153,12 @@ export function periodToJSON(object: Period): string {
 }
 
 export interface Reference {
+  Reference: ReferenceDetails | undefined;
+  MetaData: MetaData | undefined;
+  Audit: Audit | undefined;
+}
+
+export interface ReferenceDetails {
   ReferenceID: number;
   Account: string;
   ReferenceType: ReferenceType;
@@ -217,6 +229,99 @@ export interface Count {
 }
 
 function createBaseReference(): Reference {
+  return { Reference: undefined, MetaData: undefined, Audit: undefined };
+}
+
+export const Reference = {
+  encode(message: Reference, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.Reference !== undefined) {
+      ReferenceDetails.encode(message.Reference, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.MetaData !== undefined) {
+      MetaData.encode(message.MetaData, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.Audit !== undefined) {
+      Audit.encode(message.Audit, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): Reference {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseReference();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.Reference = ReferenceDetails.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.MetaData = MetaData.decode(reader, reader.uint32());
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.Audit = Audit.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): Reference {
+    return {
+      Reference: isSet(object.Reference) ? ReferenceDetails.fromJSON(object.Reference) : undefined,
+      MetaData: isSet(object.MetaData) ? MetaData.fromJSON(object.MetaData) : undefined,
+      Audit: isSet(object.Audit) ? Audit.fromJSON(object.Audit) : undefined,
+    };
+  },
+
+  toJSON(message: Reference): unknown {
+    const obj: any = {};
+    if (message.Reference !== undefined) {
+      obj.Reference = ReferenceDetails.toJSON(message.Reference);
+    }
+    if (message.MetaData !== undefined) {
+      obj.MetaData = MetaData.toJSON(message.MetaData);
+    }
+    if (message.Audit !== undefined) {
+      obj.Audit = Audit.toJSON(message.Audit);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<Reference>, I>>(base?: I): Reference {
+    return Reference.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<Reference>, I>>(object: I): Reference {
+    const message = createBaseReference();
+    message.Reference = (object.Reference !== undefined && object.Reference !== null)
+      ? ReferenceDetails.fromPartial(object.Reference)
+      : undefined;
+    message.MetaData = (object.MetaData !== undefined && object.MetaData !== null)
+      ? MetaData.fromPartial(object.MetaData)
+      : undefined;
+    message.Audit = (object.Audit !== undefined && object.Audit !== null) ? Audit.fromPartial(object.Audit) : undefined;
+    return message;
+  },
+};
+
+function createBaseReferenceDetails(): ReferenceDetails {
   return {
     ReferenceID: 0,
     Account: "",
@@ -230,8 +335,8 @@ function createBaseReference(): Reference {
   };
 }
 
-export const Reference = {
-  encode(message: Reference, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const ReferenceDetails = {
+  encode(message: ReferenceDetails, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.ReferenceID !== 0) {
       writer.uint32(8).int64(message.ReferenceID);
     }
@@ -262,10 +367,10 @@ export const Reference = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): Reference {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ReferenceDetails {
     const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseReference();
+    const message = createBaseReferenceDetails();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -341,7 +446,7 @@ export const Reference = {
     return message;
   },
 
-  fromJSON(object: any): Reference {
+  fromJSON(object: any): ReferenceDetails {
     return {
       ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
       Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
@@ -355,7 +460,7 @@ export const Reference = {
     };
   },
 
-  toJSON(message: Reference): unknown {
+  toJSON(message: ReferenceDetails): unknown {
     const obj: any = {};
     if (message.ReferenceID !== 0) {
       obj.ReferenceID = Math.round(message.ReferenceID);
@@ -387,11 +492,11 @@ export const Reference = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Reference>, I>>(base?: I): Reference {
-    return Reference.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<ReferenceDetails>, I>>(base?: I): ReferenceDetails {
+    return ReferenceDetails.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Reference>, I>>(object: I): Reference {
-    const message = createBaseReference();
+  fromPartial<I extends Exact<DeepPartial<ReferenceDetails>, I>>(object: I): ReferenceDetails {
+    const message = createBaseReferenceDetails();
     message.ReferenceID = object.ReferenceID ?? 0;
     message.Account = object.Account ?? "";
     message.ReferenceType = object.ReferenceType ?? 0;

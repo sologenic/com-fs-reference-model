@@ -4,10 +4,18 @@ package reference;
 
 import "google/protobuf/timestamp.proto";
 import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
+import "sologenic/com-fs-utils-lib/models/audit/audit.proto";
+
 
 option go_package = "github.com/sologenic/com-fs-reference-model;reference";
 
 message Reference {
+    ReferenceDetails Reference = 1;
+    metadata.MetaData MetaData = 2;
+    audit.Audit Audit = 3;
+}
+
+message ReferenceDetails {
     int64 ReferenceID = 1;
     string Account = 2;
     ReferenceType ReferenceType = 3;

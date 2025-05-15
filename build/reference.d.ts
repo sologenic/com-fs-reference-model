@@ -1,5 +1,6 @@
 import _m0 from "protobufjs/minimal";
-import { Network } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
+import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
+import { MetaData, Network } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export declare const protobufPackage = "reference";
 export declare enum ReferenceType {
     DO_NOT_USE = 0,
@@ -34,6 +35,11 @@ export declare enum Period {
 export declare function periodFromJSON(object: any): Period;
 export declare function periodToJSON(object: Period): string;
 export interface Reference {
+    Reference: ReferenceDetails | undefined;
+    MetaData: MetaData | undefined;
+    Audit: Audit | undefined;
+}
+export interface ReferenceDetails {
     ReferenceID: number;
     Account: string;
     ReferenceType: ReferenceType;
@@ -100,6 +106,144 @@ export declare const Reference: {
     fromJSON(object: any): Reference;
     toJSON(message: Reference): unknown;
     create<I extends {
+        Reference?: {
+            ReferenceID?: number | undefined;
+            Account?: string | undefined;
+            ReferenceType?: ReferenceType | undefined;
+            ReferenceKey?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
+            VoteType?: VoteType | undefined;
+            OrganizationID?: string | undefined;
+        } | undefined;
+        MetaData?: {
+            Network?: Network | undefined;
+            UpdatedAt?: Date | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedByAccount?: string | undefined;
+        } | undefined;
+        Audit?: {
+            ChangedBy?: string | undefined;
+            ChangedAt?: Date | undefined;
+            Reason?: string | undefined;
+        } | undefined;
+    } & {
+        Reference?: ({
+            ReferenceID?: number | undefined;
+            Account?: string | undefined;
+            ReferenceType?: ReferenceType | undefined;
+            ReferenceKey?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
+            VoteType?: VoteType | undefined;
+            OrganizationID?: string | undefined;
+        } & {
+            ReferenceID?: number | undefined;
+            Account?: string | undefined;
+            ReferenceType?: ReferenceType | undefined;
+            ReferenceKey?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
+            VoteType?: VoteType | undefined;
+            OrganizationID?: string | undefined;
+        } & { [K in Exclude<keyof I["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
+        MetaData?: ({
+            Network?: Network | undefined;
+            UpdatedAt?: Date | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedByAccount?: string | undefined;
+        } & {
+            Network?: Network | undefined;
+            UpdatedAt?: Date | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedByAccount?: string | undefined;
+        } & { [K_1 in Exclude<keyof I["MetaData"], keyof MetaData>]: never; }) | undefined;
+        Audit?: ({
+            ChangedBy?: string | undefined;
+            ChangedAt?: Date | undefined;
+            Reason?: string | undefined;
+        } & {
+            ChangedBy?: string | undefined;
+            ChangedAt?: Date | undefined;
+            Reason?: string | undefined;
+        } & { [K_2 in Exclude<keyof I["Audit"], keyof Audit>]: never; }) | undefined;
+    } & { [K_3 in Exclude<keyof I, keyof Reference>]: never; }>(base?: I | undefined): Reference;
+    fromPartial<I_1 extends {
+        Reference?: {
+            ReferenceID?: number | undefined;
+            Account?: string | undefined;
+            ReferenceType?: ReferenceType | undefined;
+            ReferenceKey?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
+            VoteType?: VoteType | undefined;
+            OrganizationID?: string | undefined;
+        } | undefined;
+        MetaData?: {
+            Network?: Network | undefined;
+            UpdatedAt?: Date | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedByAccount?: string | undefined;
+        } | undefined;
+        Audit?: {
+            ChangedBy?: string | undefined;
+            ChangedAt?: Date | undefined;
+            Reason?: string | undefined;
+        } | undefined;
+    } & {
+        Reference?: ({
+            ReferenceID?: number | undefined;
+            Account?: string | undefined;
+            ReferenceType?: ReferenceType | undefined;
+            ReferenceKey?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
+            VoteType?: VoteType | undefined;
+            OrganizationID?: string | undefined;
+        } & {
+            ReferenceID?: number | undefined;
+            Account?: string | undefined;
+            ReferenceType?: ReferenceType | undefined;
+            ReferenceKey?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
+            VoteType?: VoteType | undefined;
+            OrganizationID?: string | undefined;
+        } & { [K_4 in Exclude<keyof I_1["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
+        MetaData?: ({
+            Network?: Network | undefined;
+            UpdatedAt?: Date | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedByAccount?: string | undefined;
+        } & {
+            Network?: Network | undefined;
+            UpdatedAt?: Date | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedByAccount?: string | undefined;
+        } & { [K_5 in Exclude<keyof I_1["MetaData"], keyof MetaData>]: never; }) | undefined;
+        Audit?: ({
+            ChangedBy?: string | undefined;
+            ChangedAt?: Date | undefined;
+            Reason?: string | undefined;
+        } & {
+            ChangedBy?: string | undefined;
+            ChangedAt?: Date | undefined;
+            Reason?: string | undefined;
+        } & { [K_6 in Exclude<keyof I_1["Audit"], keyof Audit>]: never; }) | undefined;
+    } & { [K_7 in Exclude<keyof I_1, keyof Reference>]: never; }>(object: I_1): Reference;
+};
+export declare const ReferenceDetails: {
+    encode(message: ReferenceDetails, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ReferenceDetails;
+    fromJSON(object: any): ReferenceDetails;
+    toJSON(message: ReferenceDetails): unknown;
+    create<I extends {
         ReferenceID?: number | undefined;
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
@@ -119,7 +263,7 @@ export declare const Reference: {
         Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
-    } & { [K in Exclude<keyof I, keyof Reference>]: never; }>(base?: I | undefined): Reference;
+    } & { [K in Exclude<keyof I, keyof ReferenceDetails>]: never; }>(base?: I | undefined): ReferenceDetails;
     fromPartial<I_1 extends {
         ReferenceID?: number | undefined;
         Account?: string | undefined;
@@ -140,7 +284,7 @@ export declare const Reference: {
         Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof Reference>]: never; }>(object: I_1): Reference;
+    } & { [K_1 in Exclude<keyof I_1, keyof ReferenceDetails>]: never; }>(object: I_1): ReferenceDetails;
 };
 export declare const ID: {
     encode(message: ID, writer?: _m0.Writer): _m0.Writer;
@@ -201,114 +345,282 @@ export declare const References: {
     toJSON(message: References): unknown;
     create<I extends {
         References?: {
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         }[] | undefined;
     } & {
         References?: ({
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         }[] & ({
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         } & {
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
-        } & { [K in Exclude<keyof I["References"][number], keyof Reference>]: never; })[] & { [K_1 in Exclude<keyof I["References"], keyof {
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: ({
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } & {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } & { [K in Exclude<keyof I["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
+            MetaData?: ({
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } & {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } & { [K_1 in Exclude<keyof I["References"][number]["MetaData"], keyof MetaData>]: never; }) | undefined;
+            Audit?: ({
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } & {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } & { [K_2 in Exclude<keyof I["References"][number]["Audit"], keyof Audit>]: never; }) | undefined;
+        } & { [K_3 in Exclude<keyof I["References"][number], keyof Reference>]: never; })[] & { [K_4 in Exclude<keyof I["References"], keyof {
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, "References">]: never; }>(base?: I | undefined): References;
+    } & { [K_5 in Exclude<keyof I, "References">]: never; }>(base?: I | undefined): References;
     fromPartial<I_1 extends {
         References?: {
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         }[] | undefined;
     } & {
         References?: ({
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         }[] & ({
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         } & {
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
-        } & { [K_3 in Exclude<keyof I_1["References"][number], keyof Reference>]: never; })[] & { [K_4 in Exclude<keyof I_1["References"], keyof {
-            ReferenceID?: number | undefined;
-            Account?: string | undefined;
-            ReferenceType?: ReferenceType | undefined;
-            ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
-            VoteType?: VoteType | undefined;
-            OrganizationID?: string | undefined;
+            Reference?: ({
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } & {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } & { [K_6 in Exclude<keyof I_1["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
+            MetaData?: ({
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } & {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } & { [K_7 in Exclude<keyof I_1["References"][number]["MetaData"], keyof MetaData>]: never; }) | undefined;
+            Audit?: ({
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } & {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } & { [K_8 in Exclude<keyof I_1["References"][number]["Audit"], keyof Audit>]: never; }) | undefined;
+        } & { [K_9 in Exclude<keyof I_1["References"][number], keyof Reference>]: never; })[] & { [K_10 in Exclude<keyof I_1["References"], keyof {
+            Reference?: {
+                ReferenceID?: number | undefined;
+                Account?: string | undefined;
+                ReferenceType?: ReferenceType | undefined;
+                ReferenceKey?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
+                VoteType?: VoteType | undefined;
+                OrganizationID?: string | undefined;
+            } | undefined;
+            MetaData?: {
+                Network?: Network | undefined;
+                UpdatedAt?: Date | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedByAccount?: string | undefined;
+            } | undefined;
+            Audit?: {
+                ChangedBy?: string | undefined;
+                ChangedAt?: Date | undefined;
+                Reason?: string | undefined;
+            } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_5 in Exclude<keyof I_1, "References">]: never; }>(object: I_1): References;
+    } & { [K_11 in Exclude<keyof I_1, "References">]: never; }>(object: I_1): References;
 };
 export declare const SelectOptions: {
     encode(message: SelectOptions, writer?: _m0.Writer): _m0.Writer;

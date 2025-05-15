@@ -3,11 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Count = exports.Counts = exports.StatsOption = exports.CountOption = exports.SelectOptions = exports.References = exports.ReferenceID = exports.ID = exports.Reference = exports.periodToJSON = exports.periodFromJSON = exports.Period = exports.voteTypeToJSON = exports.voteTypeFromJSON = exports.VoteType = exports.referenceTypeToJSON = exports.referenceTypeFromJSON = exports.ReferenceType = exports.protobufPackage = void 0;
+exports.Count = exports.Counts = exports.StatsOption = exports.CountOption = exports.SelectOptions = exports.References = exports.ReferenceID = exports.ID = exports.ReferenceDetails = exports.Reference = exports.periodToJSON = exports.periodFromJSON = exports.Period = exports.voteTypeToJSON = exports.voteTypeFromJSON = exports.VoteType = exports.referenceTypeToJSON = exports.referenceTypeFromJSON = exports.ReferenceType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const timestamp_1 = require("./google/protobuf/timestamp");
+const audit_1 = require("./sologenic/com-fs-utils-lib/models/audit/audit");
 const metadata_1 = require("./sologenic/com-fs-utils-lib/models/metadata/metadata");
 exports.protobufPackage = "reference";
 var ReferenceType;
@@ -151,6 +152,90 @@ function periodToJSON(object) {
 }
 exports.periodToJSON = periodToJSON;
 function createBaseReference() {
+    return { Reference: undefined, MetaData: undefined, Audit: undefined };
+}
+exports.Reference = {
+    encode(message, writer = minimal_1.default.Writer.create()) {
+        if (message.Reference !== undefined) {
+            exports.ReferenceDetails.encode(message.Reference, writer.uint32(10).fork()).ldelim();
+        }
+        if (message.MetaData !== undefined) {
+            metadata_1.MetaData.encode(message.MetaData, writer.uint32(18).fork()).ldelim();
+        }
+        if (message.Audit !== undefined) {
+            audit_1.Audit.encode(message.Audit, writer.uint32(26).fork()).ldelim();
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseReference();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.Reference = exports.ReferenceDetails.decode(reader, reader.uint32());
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.MetaData = metadata_1.MetaData.decode(reader, reader.uint32());
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.Audit = audit_1.Audit.decode(reader, reader.uint32());
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            Reference: isSet(object.Reference) ? exports.ReferenceDetails.fromJSON(object.Reference) : undefined,
+            MetaData: isSet(object.MetaData) ? metadata_1.MetaData.fromJSON(object.MetaData) : undefined,
+            Audit: isSet(object.Audit) ? audit_1.Audit.fromJSON(object.Audit) : undefined,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.Reference !== undefined) {
+            obj.Reference = exports.ReferenceDetails.toJSON(message.Reference);
+        }
+        if (message.MetaData !== undefined) {
+            obj.MetaData = metadata_1.MetaData.toJSON(message.MetaData);
+        }
+        if (message.Audit !== undefined) {
+            obj.Audit = audit_1.Audit.toJSON(message.Audit);
+        }
+        return obj;
+    },
+    create(base) {
+        return exports.Reference.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        const message = createBaseReference();
+        message.Reference = (object.Reference !== undefined && object.Reference !== null)
+            ? exports.ReferenceDetails.fromPartial(object.Reference)
+            : undefined;
+        message.MetaData = (object.MetaData !== undefined && object.MetaData !== null)
+            ? metadata_1.MetaData.fromPartial(object.MetaData)
+            : undefined;
+        message.Audit = (object.Audit !== undefined && object.Audit !== null) ? audit_1.Audit.fromPartial(object.Audit) : undefined;
+        return message;
+    },
+};
+function createBaseReferenceDetails() {
     return {
         ReferenceID: 0,
         Account: "",
@@ -163,7 +248,7 @@ function createBaseReference() {
         OrganizationID: "",
     };
 }
-exports.Reference = {
+exports.ReferenceDetails = {
     encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.ReferenceID !== 0) {
             writer.uint32(8).int64(message.ReferenceID);
@@ -197,7 +282,7 @@ exports.Reference = {
     decode(input, length) {
         const reader = input instanceof minimal_1.default.Reader ? input : minimal_1.default.Reader.create(input);
         let end = length === undefined ? reader.len : reader.pos + length;
-        const message = createBaseReference();
+        const message = createBaseReferenceDetails();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
@@ -308,11 +393,11 @@ exports.Reference = {
         return obj;
     },
     create(base) {
-        return exports.Reference.fromPartial(base !== null && base !== void 0 ? base : {});
+        return exports.ReferenceDetails.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-        const message = createBaseReference();
+        const message = createBaseReferenceDetails();
         message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : 0;
         message.Account = (_b = object.Account) !== null && _b !== void 0 ? _b : "";
         message.ReferenceType = (_c = object.ReferenceType) !== null && _c !== void 0 ? _c : 0;
