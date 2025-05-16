@@ -20,11 +20,8 @@ message ReferenceDetails {
     string Account = 2;
     ReferenceType ReferenceType = 3;
     string ReferenceKey = 4;
-    google.protobuf.Timestamp CreatedAt = 5;
-    google.protobuf.Timestamp UpdatedAt = 6;
-    metadata.Network Network = 7;
-    VoteType VoteType = 8;
-    string OrganizationID = 9; // UUID
+    VoteType VoteType = 5;
+    string OrganizationID = 6; // UUID
 }
 
 message ID {
