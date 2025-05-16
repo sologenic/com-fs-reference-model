@@ -237,7 +237,7 @@ exports.Reference = {
 };
 function createBaseReferenceDetails() {
     return {
-        ReferenceID: "",
+        ReferenceID: 0,
         Account: "",
         ReferenceType: 0,
         ReferenceKey: "",
@@ -250,8 +250,8 @@ function createBaseReferenceDetails() {
 }
 exports.ReferenceDetails = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ReferenceID !== "") {
-            writer.uint32(10).string(message.ReferenceID);
+        if (message.ReferenceID !== 0) {
+            writer.uint32(8).int64(message.ReferenceID);
         }
         if (message.Account !== "") {
             writer.uint32(18).string(message.Account);
@@ -287,10 +287,10 @@ exports.ReferenceDetails = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 10) {
+                    if (tag !== 8) {
                         break;
                     }
-                    message.ReferenceID = reader.string();
+                    message.ReferenceID = longToNumber(reader.int64());
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -350,7 +350,7 @@ exports.ReferenceDetails = {
     },
     fromJSON(object) {
         return {
-            ReferenceID: isSet(object.ReferenceID) ? globalThis.String(object.ReferenceID) : "",
+            ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
@@ -363,8 +363,8 @@ exports.ReferenceDetails = {
     },
     toJSON(message) {
         const obj = {};
-        if (message.ReferenceID !== "") {
-            obj.ReferenceID = message.ReferenceID;
+        if (message.ReferenceID !== 0) {
+            obj.ReferenceID = Math.round(message.ReferenceID);
         }
         if (message.Account !== "") {
             obj.Account = message.Account;
@@ -398,7 +398,7 @@ exports.ReferenceDetails = {
     fromPartial(object) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         const message = createBaseReferenceDetails();
-        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : "";
+        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : 0;
         message.Account = (_b = object.Account) !== null && _b !== void 0 ? _b : "";
         message.ReferenceType = (_c = object.ReferenceType) !== null && _c !== void 0 ? _c : 0;
         message.ReferenceKey = (_d = object.ReferenceKey) !== null && _d !== void 0 ? _d : "";
@@ -520,12 +520,12 @@ exports.ID = {
     },
 };
 function createBaseReferenceID() {
-    return { ReferenceID: "", Network: 0 };
+    return { ReferenceID: 0, Network: 0 };
 }
 exports.ReferenceID = {
     encode(message, writer = minimal_1.default.Writer.create()) {
-        if (message.ReferenceID !== "") {
-            writer.uint32(10).string(message.ReferenceID);
+        if (message.ReferenceID !== 0) {
+            writer.uint32(8).int64(message.ReferenceID);
         }
         if (message.Network !== 0) {
             writer.uint32(16).int32(message.Network);
@@ -540,10 +540,10 @@ exports.ReferenceID = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 10) {
+                    if (tag !== 8) {
                         break;
                     }
-                    message.ReferenceID = reader.string();
+                    message.ReferenceID = longToNumber(reader.int64());
                     continue;
                 case 2:
                     if (tag !== 16) {
@@ -561,14 +561,14 @@ exports.ReferenceID = {
     },
     fromJSON(object) {
         return {
-            ReferenceID: isSet(object.ReferenceID) ? globalThis.String(object.ReferenceID) : "",
+            ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
             Network: isSet(object.Network) ? (0, metadata_1.networkFromJSON)(object.Network) : 0,
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.ReferenceID !== "") {
-            obj.ReferenceID = message.ReferenceID;
+        if (message.ReferenceID !== 0) {
+            obj.ReferenceID = Math.round(message.ReferenceID);
         }
         if (message.Network !== 0) {
             obj.Network = (0, metadata_1.networkToJSON)(message.Network);
@@ -581,7 +581,7 @@ exports.ReferenceID = {
     fromPartial(object) {
         var _a, _b;
         const message = createBaseReferenceID();
-        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : "";
+        message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : 0;
         message.Network = (_b = object.Network) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
