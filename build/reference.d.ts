@@ -44,9 +44,6 @@ export interface ReferenceDetails {
     Account: string;
     ReferenceType: ReferenceType;
     ReferenceKey: string;
-    CreatedAt: Date | undefined;
-    UpdatedAt: Date | undefined;
-    Network: Network;
     VoteType: VoteType;
     /** UUID */
     OrganizationID: string;
@@ -115,9 +112,6 @@ export declare const Reference: {
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } | undefined;
@@ -138,9 +132,6 @@ export declare const Reference: {
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & {
@@ -148,9 +139,6 @@ export declare const Reference: {
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & { [K in Exclude<keyof I["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
@@ -181,9 +169,6 @@ export declare const Reference: {
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } | undefined;
@@ -204,9 +189,6 @@ export declare const Reference: {
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & {
@@ -214,9 +196,6 @@ export declare const Reference: {
             Account?: string | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
             OrganizationID?: string | undefined;
         } & { [K_4 in Exclude<keyof I_1["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
@@ -252,9 +231,6 @@ export declare const ReferenceDetails: {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        CreatedAt?: Date | undefined;
-        UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & {
@@ -262,9 +238,6 @@ export declare const ReferenceDetails: {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        CreatedAt?: Date | undefined;
-        UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & { [K in Exclude<keyof I, keyof ReferenceDetails>]: never; }>(base?: I | undefined): ReferenceDetails;
@@ -273,9 +246,6 @@ export declare const ReferenceDetails: {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        CreatedAt?: Date | undefined;
-        UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & {
@@ -283,9 +253,6 @@ export declare const ReferenceDetails: {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        CreatedAt?: Date | undefined;
-        UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
         OrganizationID?: string | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof ReferenceDetails>]: never; }>(object: I_1): ReferenceDetails;
@@ -374,9 +341,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;
@@ -399,9 +363,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;
@@ -422,9 +383,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;
@@ -445,9 +403,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } & {
@@ -455,9 +410,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } & { [K in Exclude<keyof I["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
@@ -487,9 +439,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;
@@ -513,9 +462,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;
@@ -538,9 +484,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;
@@ -561,9 +504,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;
@@ -584,9 +524,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } & {
@@ -594,9 +531,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } & { [K_6 in Exclude<keyof I_1["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
@@ -626,9 +560,6 @@ export declare const References: {
                 Account?: string | undefined;
                 ReferenceType?: ReferenceType | undefined;
                 ReferenceKey?: string | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
                 VoteType?: VoteType | undefined;
                 OrganizationID?: string | undefined;
             } | undefined;

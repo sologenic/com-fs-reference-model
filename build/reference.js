@@ -7,7 +7,6 @@ exports.Count = exports.Counts = exports.StatsOption = exports.CountOption = exp
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
-const timestamp_1 = require("./google/protobuf/timestamp");
 const audit_1 = require("./sologenic/com-fs-utils-lib/models/audit/audit");
 const metadata_1 = require("./sologenic/com-fs-utils-lib/models/metadata/metadata");
 exports.protobufPackage = "reference";
@@ -236,17 +235,7 @@ exports.Reference = {
     },
 };
 function createBaseReferenceDetails() {
-    return {
-        ReferenceID: 0,
-        Account: "",
-        ReferenceType: 0,
-        ReferenceKey: "",
-        CreatedAt: undefined,
-        UpdatedAt: undefined,
-        Network: 0,
-        VoteType: 0,
-        OrganizationID: "",
-    };
+    return { ReferenceID: 0, Account: "", ReferenceType: 0, ReferenceKey: "", VoteType: 0, OrganizationID: "" };
 }
 exports.ReferenceDetails = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -262,20 +251,11 @@ exports.ReferenceDetails = {
         if (message.ReferenceKey !== "") {
             writer.uint32(34).string(message.ReferenceKey);
         }
-        if (message.CreatedAt !== undefined) {
-            timestamp_1.Timestamp.encode(toTimestamp(message.CreatedAt), writer.uint32(42).fork()).ldelim();
-        }
-        if (message.UpdatedAt !== undefined) {
-            timestamp_1.Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(50).fork()).ldelim();
-        }
-        if (message.Network !== 0) {
-            writer.uint32(56).int32(message.Network);
-        }
         if (message.VoteType !== 0) {
-            writer.uint32(64).int32(message.VoteType);
+            writer.uint32(40).int32(message.VoteType);
         }
         if (message.OrganizationID !== "") {
-            writer.uint32(74).string(message.OrganizationID);
+            writer.uint32(50).string(message.OrganizationID);
         }
         return writer;
     },
@@ -311,31 +291,13 @@ exports.ReferenceDetails = {
                     message.ReferenceKey = reader.string();
                     continue;
                 case 5:
-                    if (tag !== 42) {
-                        break;
-                    }
-                    message.CreatedAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
-                    continue;
-                case 6:
-                    if (tag !== 50) {
-                        break;
-                    }
-                    message.UpdatedAt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
-                    continue;
-                case 7:
-                    if (tag !== 56) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
-                case 8:
-                    if (tag !== 64) {
+                    if (tag !== 40) {
                         break;
                     }
                     message.VoteType = reader.int32();
                     continue;
-                case 9:
-                    if (tag !== 74) {
+                case 6:
+                    if (tag !== 50) {
                         break;
                     }
                     message.OrganizationID = reader.string();
@@ -354,9 +316,6 @@ exports.ReferenceDetails = {
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
-            CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
-            UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
-            Network: isSet(object.Network) ? (0, metadata_1.networkFromJSON)(object.Network) : 0,
             VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
             OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
         };
@@ -375,15 +334,6 @@ exports.ReferenceDetails = {
         if (message.ReferenceKey !== "") {
             obj.ReferenceKey = message.ReferenceKey;
         }
-        if (message.CreatedAt !== undefined) {
-            obj.CreatedAt = message.CreatedAt.toISOString();
-        }
-        if (message.UpdatedAt !== undefined) {
-            obj.UpdatedAt = message.UpdatedAt.toISOString();
-        }
-        if (message.Network !== 0) {
-            obj.Network = (0, metadata_1.networkToJSON)(message.Network);
-        }
         if (message.VoteType !== 0) {
             obj.VoteType = voteTypeToJSON(message.VoteType);
         }
@@ -396,17 +346,14 @@ exports.ReferenceDetails = {
         return exports.ReferenceDetails.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        var _a, _b, _c, _d, _e, _f;
         const message = createBaseReferenceDetails();
         message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : 0;
         message.Account = (_b = object.Account) !== null && _b !== void 0 ? _b : "";
         message.ReferenceType = (_c = object.ReferenceType) !== null && _c !== void 0 ? _c : 0;
         message.ReferenceKey = (_d = object.ReferenceKey) !== null && _d !== void 0 ? _d : "";
-        message.CreatedAt = (_e = object.CreatedAt) !== null && _e !== void 0 ? _e : undefined;
-        message.UpdatedAt = (_f = object.UpdatedAt) !== null && _f !== void 0 ? _f : undefined;
-        message.Network = (_g = object.Network) !== null && _g !== void 0 ? _g : 0;
-        message.VoteType = (_h = object.VoteType) !== null && _h !== void 0 ? _h : 0;
-        message.OrganizationID = (_j = object.OrganizationID) !== null && _j !== void 0 ? _j : "";
+        message.VoteType = (_e = object.VoteType) !== null && _e !== void 0 ? _e : 0;
+        message.OrganizationID = (_f = object.OrganizationID) !== null && _f !== void 0 ? _f : "";
         return message;
     },
 };
@@ -1242,27 +1189,6 @@ exports.Count = {
         return message;
     },
 };
-function toTimestamp(date) {
-    const seconds = date.getTime() / 1000;
-    const nanos = (date.getTime() % 1000) * 1000000;
-    return { seconds, nanos };
-}
-function fromTimestamp(t) {
-    let millis = (t.seconds || 0) * 1000;
-    millis += (t.nanos || 0) / 1000000;
-    return new globalThis.Date(millis);
-}
-function fromJsonTimestamp(o) {
-    if (o instanceof globalThis.Date) {
-        return o;
-    }
-    else if (typeof o === "string") {
-        return new globalThis.Date(o);
-    }
-    else {
-        return fromTimestamp(timestamp_1.Timestamp.fromJSON(o));
-    }
-}
 function longToNumber(long) {
     if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
         throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");

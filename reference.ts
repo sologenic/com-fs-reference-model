@@ -1,7 +1,6 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
-import { Timestamp } from "./google/protobuf/timestamp";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
 import {
   MetaData,
@@ -163,9 +162,6 @@ export interface ReferenceDetails {
   Account: string;
   ReferenceType: ReferenceType;
   ReferenceKey: string;
-  CreatedAt: Date | undefined;
-  UpdatedAt: Date | undefined;
-  Network: Network;
   VoteType: VoteType;
   /** UUID */
   OrganizationID: string;
@@ -327,17 +323,7 @@ export const Reference = {
 };
 
 function createBaseReferenceDetails(): ReferenceDetails {
-  return {
-    ReferenceID: 0,
-    Account: "",
-    ReferenceType: 0,
-    ReferenceKey: "",
-    CreatedAt: undefined,
-    UpdatedAt: undefined,
-    Network: 0,
-    VoteType: 0,
-    OrganizationID: "",
-  };
+  return { ReferenceID: 0, Account: "", ReferenceType: 0, ReferenceKey: "", VoteType: 0, OrganizationID: "" };
 }
 
 export const ReferenceDetails = {
@@ -354,20 +340,11 @@ export const ReferenceDetails = {
     if (message.ReferenceKey !== "") {
       writer.uint32(34).string(message.ReferenceKey);
     }
-    if (message.CreatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.CreatedAt), writer.uint32(42).fork()).ldelim();
-    }
-    if (message.UpdatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(50).fork()).ldelim();
-    }
-    if (message.Network !== 0) {
-      writer.uint32(56).int32(message.Network);
-    }
     if (message.VoteType !== 0) {
-      writer.uint32(64).int32(message.VoteType);
+      writer.uint32(40).int32(message.VoteType);
     }
     if (message.OrganizationID !== "") {
-      writer.uint32(74).string(message.OrganizationID);
+      writer.uint32(50).string(message.OrganizationID);
     }
     return writer;
   },
@@ -408,35 +385,14 @@ export const ReferenceDetails = {
           message.ReferenceKey = reader.string();
           continue;
         case 5:
-          if (tag !== 42) {
-            break;
-          }
-
-          message.CreatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
-          continue;
-        case 6:
-          if (tag !== 50) {
-            break;
-          }
-
-          message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
-          continue;
-        case 7:
-          if (tag !== 56) {
-            break;
-          }
-
-          message.Network = reader.int32() as any;
-          continue;
-        case 8:
-          if (tag !== 64) {
+          if (tag !== 40) {
             break;
           }
 
           message.VoteType = reader.int32() as any;
           continue;
-        case 9:
-          if (tag !== 74) {
+        case 6:
+          if (tag !== 50) {
             break;
           }
 
@@ -457,9 +413,6 @@ export const ReferenceDetails = {
       Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
       ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
-      CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
-      UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
-      Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
       VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
       OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
     };
@@ -479,15 +432,6 @@ export const ReferenceDetails = {
     if (message.ReferenceKey !== "") {
       obj.ReferenceKey = message.ReferenceKey;
     }
-    if (message.CreatedAt !== undefined) {
-      obj.CreatedAt = message.CreatedAt.toISOString();
-    }
-    if (message.UpdatedAt !== undefined) {
-      obj.UpdatedAt = message.UpdatedAt.toISOString();
-    }
-    if (message.Network !== 0) {
-      obj.Network = networkToJSON(message.Network);
-    }
     if (message.VoteType !== 0) {
       obj.VoteType = voteTypeToJSON(message.VoteType);
     }
@@ -506,9 +450,6 @@ export const ReferenceDetails = {
     message.Account = object.Account ?? "";
     message.ReferenceType = object.ReferenceType ?? 0;
     message.ReferenceKey = object.ReferenceKey ?? "";
-    message.CreatedAt = object.CreatedAt ?? undefined;
-    message.UpdatedAt = object.UpdatedAt ?? undefined;
-    message.Network = object.Network ?? 0;
     message.VoteType = object.VoteType ?? 0;
     message.OrganizationID = object.OrganizationID ?? "";
     return message;
@@ -1431,28 +1372,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function toTimestamp(date: Date): Timestamp {
-  const seconds = date.getTime() / 1_000;
-  const nanos = (date.getTime() % 1_000) * 1_000_000;
-  return { seconds, nanos };
-}
-
-function fromTimestamp(t: Timestamp): Date {
-  let millis = (t.seconds || 0) * 1_000;
-  millis += (t.nanos || 0) / 1_000_000;
-  return new globalThis.Date(millis);
-}
-
-function fromJsonTimestamp(o: any): Date {
-  if (o instanceof globalThis.Date) {
-    return o;
-  } else if (typeof o === "string") {
-    return new globalThis.Date(o);
-  } else {
-    return fromTimestamp(Timestamp.fromJSON(o));
-  }
-}
 
 function longToNumber(long: Long): number {
   if (long.gt(globalThis.Number.MAX_SAFE_INTEGER)) {
