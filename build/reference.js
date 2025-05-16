@@ -534,7 +534,7 @@ exports.ReferenceID = {
     },
 };
 function createBaseReferenceKey() {
-    return { ReferenceKey: "", Network: 0 };
+    return { ReferenceKey: "", Network: 0, Account: "" };
 }
 exports.ReferenceKey = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -543,6 +543,9 @@ exports.ReferenceKey = {
         }
         if (message.Network !== 0) {
             writer.uint32(16).int32(message.Network);
+        }
+        if (message.Account !== "") {
+            writer.uint32(26).string(message.Account);
         }
         return writer;
     },
@@ -565,6 +568,12 @@ exports.ReferenceKey = {
                     }
                     message.Network = reader.int32();
                     continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.Account = reader.string();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -577,6 +586,7 @@ exports.ReferenceKey = {
         return {
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
             Network: isSet(object.Network) ? (0, metadata_1.networkFromJSON)(object.Network) : 0,
+            Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
         };
     },
     toJSON(message) {
@@ -587,16 +597,20 @@ exports.ReferenceKey = {
         if (message.Network !== 0) {
             obj.Network = (0, metadata_1.networkToJSON)(message.Network);
         }
+        if (message.Account !== "") {
+            obj.Account = message.Account;
+        }
         return obj;
     },
     create(base) {
         return exports.ReferenceKey.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a, _b, _c;
         const message = createBaseReferenceKey();
         message.ReferenceKey = (_a = object.ReferenceKey) !== null && _a !== void 0 ? _a : "";
         message.Network = (_b = object.Network) !== null && _b !== void 0 ? _b : 0;
+        message.Account = (_c = object.Account) !== null && _c !== void 0 ? _c : "";
         return message;
     },
 };

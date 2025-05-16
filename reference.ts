@@ -184,6 +184,7 @@ export interface ReferenceID {
 export interface ReferenceKey {
   ReferenceKey: string;
   Network: Network;
+  Account: string;
 }
 
 export interface References {
@@ -650,7 +651,7 @@ export const ReferenceID = {
 };
 
 function createBaseReferenceKey(): ReferenceKey {
-  return { ReferenceKey: "", Network: 0 };
+  return { ReferenceKey: "", Network: 0, Account: "" };
 }
 
 export const ReferenceKey = {
@@ -660,6 +661,9 @@ export const ReferenceKey = {
     }
     if (message.Network !== 0) {
       writer.uint32(16).int32(message.Network);
+    }
+    if (message.Account !== "") {
+      writer.uint32(26).string(message.Account);
     }
     return writer;
   },
@@ -685,6 +689,13 @@ export const ReferenceKey = {
 
           message.Network = reader.int32() as any;
           continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.Account = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -698,6 +709,7 @@ export const ReferenceKey = {
     return {
       ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
       Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
+      Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
     };
   },
 
@@ -709,6 +721,9 @@ export const ReferenceKey = {
     if (message.Network !== 0) {
       obj.Network = networkToJSON(message.Network);
     }
+    if (message.Account !== "") {
+      obj.Account = message.Account;
+    }
     return obj;
   },
 
@@ -719,6 +734,7 @@ export const ReferenceKey = {
     const message = createBaseReferenceKey();
     message.ReferenceKey = object.ReferenceKey ?? "";
     message.Network = object.Network ?? 0;
+    message.Account = object.Account ?? "";
     return message;
   },
 };

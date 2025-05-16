@@ -63,6 +63,7 @@ export interface ReferenceID {
 export interface ReferenceKey {
     ReferenceKey: string;
     Network: Network;
+    Account: string;
 }
 export interface References {
     References: Reference[];
@@ -317,16 +318,20 @@ export declare const ReferenceKey: {
     create<I extends {
         ReferenceKey?: string | undefined;
         Network?: Network | undefined;
+        Account?: string | undefined;
     } & {
         ReferenceKey?: string | undefined;
         Network?: Network | undefined;
+        Account?: string | undefined;
     } & { [K in Exclude<keyof I, keyof ReferenceKey>]: never; }>(base?: I | undefined): ReferenceKey;
     fromPartial<I_1 extends {
         ReferenceKey?: string | undefined;
         Network?: Network | undefined;
+        Account?: string | undefined;
     } & {
         ReferenceKey?: string | undefined;
         Network?: Network | undefined;
+        Account?: string | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof ReferenceKey>]: never; }>(object: I_1): ReferenceKey;
 };
 export declare const References: {
