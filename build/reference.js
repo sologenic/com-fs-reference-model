@@ -235,7 +235,7 @@ exports.Reference = {
     },
 };
 function createBaseReferenceDetails() {
-    return { ReferenceID: 0, Account: "", ReferenceType: 0, ReferenceKey: "", VoteType: 0, OrganizationID: "" };
+    return { ReferenceID: 0, Account: "", ReferenceType: 0, ReferenceKey: "", VoteType: undefined, OrganizationID: "" };
 }
 exports.ReferenceDetails = {
     encode(message, writer = minimal_1.default.Writer.create()) {
@@ -251,7 +251,7 @@ exports.ReferenceDetails = {
         if (message.ReferenceKey !== "") {
             writer.uint32(34).string(message.ReferenceKey);
         }
-        if (message.VoteType !== 0) {
+        if (message.VoteType !== undefined) {
             writer.uint32(40).int32(message.VoteType);
         }
         if (message.OrganizationID !== "") {
@@ -316,7 +316,7 @@ exports.ReferenceDetails = {
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
-            VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
+            VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : undefined,
             OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
         };
     },
@@ -334,7 +334,7 @@ exports.ReferenceDetails = {
         if (message.ReferenceKey !== "") {
             obj.ReferenceKey = message.ReferenceKey;
         }
-        if (message.VoteType !== 0) {
+        if (message.VoteType !== undefined) {
             obj.VoteType = voteTypeToJSON(message.VoteType);
         }
         if (message.OrganizationID !== "") {
@@ -352,7 +352,7 @@ exports.ReferenceDetails = {
         message.Account = (_b = object.Account) !== null && _b !== void 0 ? _b : "";
         message.ReferenceType = (_c = object.ReferenceType) !== null && _c !== void 0 ? _c : 0;
         message.ReferenceKey = (_d = object.ReferenceKey) !== null && _d !== void 0 ? _d : "";
-        message.VoteType = (_e = object.VoteType) !== null && _e !== void 0 ? _e : 0;
+        message.VoteType = (_e = object.VoteType) !== null && _e !== void 0 ? _e : undefined;
         message.OrganizationID = (_f = object.OrganizationID) !== null && _f !== void 0 ? _f : "";
         return message;
     },

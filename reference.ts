@@ -162,7 +162,9 @@ export interface ReferenceDetails {
   Account: string;
   ReferenceType: ReferenceType;
   ReferenceKey: string;
-  VoteType: VoteType;
+  VoteType?:
+    | VoteType
+    | undefined;
   /** UUID */
   OrganizationID: string;
 }
@@ -324,7 +326,7 @@ export const Reference = {
 };
 
 function createBaseReferenceDetails(): ReferenceDetails {
-  return { ReferenceID: 0, Account: "", ReferenceType: 0, ReferenceKey: "", VoteType: 0, OrganizationID: "" };
+  return { ReferenceID: 0, Account: "", ReferenceType: 0, ReferenceKey: "", VoteType: undefined, OrganizationID: "" };
 }
 
 export const ReferenceDetails = {
@@ -341,7 +343,7 @@ export const ReferenceDetails = {
     if (message.ReferenceKey !== "") {
       writer.uint32(34).string(message.ReferenceKey);
     }
-    if (message.VoteType !== 0) {
+    if (message.VoteType !== undefined) {
       writer.uint32(40).int32(message.VoteType);
     }
     if (message.OrganizationID !== "") {
@@ -414,7 +416,7 @@ export const ReferenceDetails = {
       Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
       ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
       ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
-      VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
+      VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : undefined,
       OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
     };
   },
@@ -433,7 +435,7 @@ export const ReferenceDetails = {
     if (message.ReferenceKey !== "") {
       obj.ReferenceKey = message.ReferenceKey;
     }
-    if (message.VoteType !== 0) {
+    if (message.VoteType !== undefined) {
       obj.VoteType = voteTypeToJSON(message.VoteType);
     }
     if (message.OrganizationID !== "") {
@@ -451,7 +453,7 @@ export const ReferenceDetails = {
     message.Account = object.Account ?? "";
     message.ReferenceType = object.ReferenceType ?? 0;
     message.ReferenceKey = object.ReferenceKey ?? "";
-    message.VoteType = object.VoteType ?? 0;
+    message.VoteType = object.VoteType ?? undefined;
     message.OrganizationID = object.OrganizationID ?? "";
     return message;
   },

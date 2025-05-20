@@ -6,6 +6,7 @@ toolchain go1.23.4
 
 require (
 	github.com/sologenic/com-fs-utils-lib/go/grpc-client v0.0.0-20250508175608-c95d98cdf186
+	github.com/sologenic/com-fs-utils-lib/models/audit v0.0.0-20250515230819-64335ed9d778
 	github.com/sologenic/com-fs-utils-lib/models/metadata v0.0.0-20250508175608-c95d98cdf186
 	google.golang.org/grpc v1.72.0
 	google.golang.org/protobuf v1.36.5

@@ -66,6 +66,8 @@ github.com/sologenic/com-fs-utils-lib/go/grpc-client v0.0.0-20250508175608-c95d9
 github.com/sologenic/com-fs-utils-lib/go/grpc-client v0.0.0-20250508175608-c95d98cdf186/go.mod h1:CP73V5ZmuGgngRuQbBTmVNusvVmF7kRKeRz85P61o8M=
 github.com/sologenic/com-fs-utils-lib/go/logger v0.0.0-20240906214824-8118c42c5b35 h1:zIv/s+nyS0WREsCCVMY0dTbSRjs8+nkS/B3eFqJI7uk=
 github.com/sologenic/com-fs-utils-lib/go/logger v0.0.0-20240906214824-8118c42c5b35/go.mod h1:++g+mQb95rje/dEjNJDM1F1ftwM1GobPgAh1zNG+hEw=
+github.com/sologenic/com-fs-utils-lib/models/audit v0.0.0-20250515230819-64335ed9d778 h1:2rbYkVHjZ2/JYnqzoJ2bUL7qvnSuOiv48tqEUDiXGGQ=
+github.com/sologenic/com-fs-utils-lib/models/audit v0.0.0-20250515230819-64335ed9d778/go.mod h1:aesYC9CUzVQ4JUHZwpLYx0yeNK1Sl37vzLKmDKQiyoY=
 github.com/sologenic/com-fs-utils-lib/models/metadata v0.0.0-20250508175608-c95d98cdf186 h1:9q0lruvrYMaoXdV573mngCXajhVwudpRcPG+Mz/6czw=
 github.com/sologenic/com-fs-utils-lib/models/metadata v0.0.0-20250508175608-c95d98cdf186/go.mod h1:ftOGlExX3C/AN24/N3j3+rHo4C7ehxfHNGpimuWv7IQ=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

@@ -44,7 +44,7 @@ export interface ReferenceDetails {
     Account: string;
     ReferenceType: ReferenceType;
     ReferenceKey: string;
-    VoteType: VoteType;
+    VoteType?: VoteType | undefined;
     /** UUID */
     OrganizationID: string;
 }
