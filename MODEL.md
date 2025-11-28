@@ -18,6 +18,8 @@
     - [Count](#count)
   - [Enums](#enums)
     - [ReferenceType](#referencetype)
+    - [VoteType](#votetype)
+    - [Period](#period)
 - [Version Information](#version-information)
 - [Support](#support)
 
@@ -287,8 +289,11 @@ The `ReferenceType` enum defines the possible states or types for reference, all
 
 | Value Name | Number | Description |
 |------------|--------|-------------|
-| ey | 4 | ey value |
-| VoteType | 5 | VoteType value |
+| DO_NOT_USE | 0 | Default/unused value (protobuf convention) |
+| ASSET_FOLLOW | 1 | Asset Follow state or type |
+| COMMENT_ID | 2 | Comment Id state or type |
+| ASSET_ID | 3 | Asset Id state or type |
+| ASSET_VOTE | 4 | Asset Vote state or type |
 
 **Use Cases:**
 - Setting referencetype for items
@@ -296,8 +301,54 @@ The `ReferenceType` enum defines the possible states or types for reference, all
 - Enforcing business logic based on referencetype
 
 **Important Notes:**
+- Values with `NOT_USED` prefix or number 0 follow protobuf conventions for default enum values and should not be actively used
 - Only valid referencetype values should be used in production code
 - ReferenceType changes should be tracked in audit trails for compliance purposes
+
+#### VoteType {#votetype}
+
+The `VoteType` enum defines the possible states or types for reference, allowing for classification and state management.
+
+**Value Table:**
+
+| Value Name | Number | Description |
+|------------|--------|-------------|
+| NOT_APPLICABLE | 0 | Default/unused value (protobuf convention) |
+| UPVOTE | 1 | Upvote state or type |
+| DOWNVOTE | 2 | Downvote state or type |
+
+**Use Cases:**
+- Setting votetype for items
+- Filtering items by votetype in queries
+- Enforcing business logic based on votetype
+
+**Important Notes:**
+- Values with `NOT_USED` prefix or number 0 follow protobuf conventions for default enum values and should not be actively used
+- Only valid votetype values should be used in production code
+- VoteType changes should be tracked in audit trails for compliance purposes
+
+#### Period {#period}
+
+The `Period` enum defines the possible states or types for reference, allowing for classification and state management.
+
+**Value Table:**
+
+| Value Name | Number | Description |
+|------------|--------|-------------|
+| ALL_TIME | 0 | Default/unused value (protobuf convention) |
+| DAY | 1 | Day state or type |
+| DAY_7 | 2 | Day 7 state or type |
+| DAY_30 | 3 | Day 30 state or type |
+
+**Use Cases:**
+- Setting period for items
+- Filtering items by period in queries
+- Enforcing business logic based on period
+
+**Important Notes:**
+- Values with `NOT_USED` prefix or number 0 follow protobuf conventions for default enum values and should not be actively used
+- Only valid period values should be used in production code
+- Period changes should be tracked in audit trails for compliance purposes
 
 ## Version Information
 
