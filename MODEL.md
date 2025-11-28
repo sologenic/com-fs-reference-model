@@ -20,10 +20,9 @@
 
 ## Overview
 
-The Reference provides a comprehensive data structure for managing reference within the system. This model supports organizational context: links items to organizations via organizationid, metadata and audit: includes metadata and audit trails for tracking changes, identification: provides unique identifiers for reference, and more. 
+The Reference provides a comprehensive data structure for managing reference within the system. This model supports metadata and audit: includes metadata and audit trails for tracking changes, identification: provides unique identifiers for reference, and more. 
 
 Key features of the {model_name.lower()} model include:
-- **Organizational Context**: Links items to organizations via OrganizationID
 - **Metadata and Audit**: Includes metadata and audit trails for tracking changes
 - **Identification**: Provides unique identifiers for reference
 
@@ -49,16 +48,14 @@ The `Reference` message provides reference data and operations.
 | Field Name | Type | Required/Optional | Description |
 |------------|------|-------------------|-------------|
 | VoteType | `VoteType` | Optional | Type classification for this item (see related enum) |
-| OrganizationID | `string` | Required | UUID of the organization this item belongs to |
 
 **Use Cases:**
 - Creating new reference records
 - Retrieving reference information
 - Updating reference data
-- Associating items with specific organizations
 
 **Important Notes:**
-- The `OrganizationID` must be a valid UUID format
+- This message provides the reference representation
 
 #### ID {#id}
 
@@ -72,16 +69,14 @@ The `ID` message provides id data and operations.
 | ReferenceKey | `string` | Required | ReferenceKey value |
 | ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
 | Network | `metadata.Network` | Required | Metadata information including network and version details |
-| OrganizationID | `string` | Required | UUID of the organization this item belongs to |
 
 **Use Cases:**
 - Creating new id records
 - Retrieving id information
 - Updating id data
-- Associating items with specific organizations
 
 **Important Notes:**
-- The `OrganizationID` must be a valid UUID format
+- This message provides the id representation
 
 #### ReferenceID {#referenceid}
 
