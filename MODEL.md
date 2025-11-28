@@ -25,7 +25,7 @@
 
 The Reference provides a comprehensive data structure for managing reference within the system. This model supports metadata and audit: includes metadata and audit trails for tracking changes, identification: provides unique identifiers for reference, organizational context: links items to organizations via organizationid, and more. 
 
-Key features of the {model_name.lower()} model include:
+Key features of the reference model include:
 - **Metadata and Audit**: Includes metadata and audit trails for tracking changes
 - **Identification**: Provides unique identifiers for reference
 - **Organizational Context**: Links items to organizations via OrganizationID
