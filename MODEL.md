@@ -6,10 +6,13 @@
 - [reference.proto](#reference)
   - [Messages](#messages)
     - [Reference](#reference)
+    - [ReferenceDetails](#referencedetails)
     - [ID](#id)
     - [ReferenceID](#referenceid)
     - [ReferenceKey](#referencekey)
     - [References](#references)
+    - [SelectOptions](#selectoptions)
+    - [CountOption](#countoption)
     - [StatsOption](#statsoption)
     - [Counts](#counts)
     - [Count](#count)
@@ -20,12 +23,12 @@
 
 ## Overview
 
-The Reference provides a comprehensive data structure for managing reference within the system. This model supports organizational context: links items to organizations via organizationid, metadata and audit: includes metadata and audit trails for tracking changes, identification: provides unique identifiers for reference, and more. 
+The Reference provides a comprehensive data structure for managing reference within the system. This model supports metadata and audit: includes metadata and audit trails for tracking changes, identification: provides unique identifiers for reference, organizational context: links items to organizations via organizationid, and more. 
 
 Key features of the {model_name.lower()} model include:
-- **Organizational Context**: Links items to organizations via OrganizationID
 - **Metadata and Audit**: Includes metadata and audit trails for tracking changes
 - **Identification**: Provides unique identifiers for reference
+- **Organizational Context**: Links items to organizations via OrganizationID
 
 ## reference.proto
 
@@ -48,16 +51,40 @@ The `Reference` message provides reference data and operations.
 
 | Field Name | Type | Required/Optional | Description |
 |------------|------|-------------------|-------------|
-| VoteType | `VoteType` | Optional | Type classification for this item (see related enum) |
-| OrganizationID | `string` | Required | UUID |
+| Reference | `ReferenceDetails` | Required | Reference field |
+| MetaData | `metadata.MetaData` | Required | Metadata information including network and version details |
+| Audit | `audit.Audit` | Required | Audit trail information for tracking changes and access |
 
 **Use Cases:**
 - Creating new reference records
 - Retrieving reference information
 - Updating reference data
+
+**Important Notes:**
+- This message provides the reference representation
+
+#### ReferenceDetails {#referencedetails}
+
+The `ReferenceDetails` message contains all the core information about a reference, including essential details and metadata.
+
+**Field Table:**
+
+| Field Name | Type | Required/Optional | Description |
+|------------|------|-------------------|-------------|
+| ReferenceID | `int64` | Required | Unique identifier for the reference |
+| Account | `string` | Required | Account value |
+| ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
+| ReferenceKey | `string` | Required | ReferenceKey value |
+| VoteType | `VoteType` | Optional | Type classification for this item (see related enum) |
+| OrganizationID | `string` | Required | UUID |
+
+**Use Cases:**
+- Creating new reference records with complete information
+- Updating reference information
 - Associating items with specific organizations
 
 **Important Notes:**
+- The `ReferenceID` field must match a valid identifier format
 - The `OrganizationID` must be a valid UUID format
 
 #### ID {#id}
@@ -130,10 +157,7 @@ The `References` message represents a collection of reference with pagination su
 
 | Field Name | Type | Required/Optional | Description |
 |------------|------|-------------------|-------------|
-| ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
-| ReferenceKey | `string` | Optional | ReferenceKey value |
-| VoteType | `VoteType` | Optional | Type classification for this item (see related enum) |
+| References | `Reference` | Optional | References field |
 
 **Use Cases:**
 - Returning paginated lists of reference from queries or searches
@@ -142,6 +166,54 @@ The `References` message represents a collection of reference with pagination su
 
 **Important Notes:**
 - This message provides the references representation
+
+#### SelectOptions {#selectoptions}
+
+The `SelectOptions` message represents a collection of selectoption with pagination support for handling large result sets.
+
+**Field Table:**
+
+| Field Name | Type | Required/Optional | Description |
+|------------|------|-------------------|-------------|
+| Account | `string` | Required | Account value |
+| BeforeReferenceID | `int64` | Required | Unique identifier for the beforereference |
+| Limit | `int32` | Required | Limit field |
+| ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
+| ReferenceKey | `string` | Optional | ReferenceKey value |
+| Network | `metadata.Network` | Required | Metadata information including network and version details |
+| OrganizationID | `string` | Required | UUID |
+
+**Use Cases:**
+- Returning paginated lists of selectoption from queries or searches
+- Implementing pagination in selectoption listing APIs
+- Handling large selectoptions efficiently
+- Associating items with specific organizations
+
+**Important Notes:**
+- The `BeforeReferenceID` field must match a valid identifier format
+- The `OrganizationID` must be a valid UUID format
+
+#### CountOption {#countoption}
+
+The `CountOption` message provides countoption data and operations.
+
+**Field Table:**
+
+| Field Name | Type | Required/Optional | Description |
+|------------|------|-------------------|-------------|
+| Account | `string` | Required | Account value |
+| ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
+| Network | `metadata.Network` | Required | Metadata information including network and version details |
+| ReferenceKey | `string` | Optional | ReferenceKey value |
+| VoteType | `VoteType` | Optional | Type classification for this item (see related enum) |
+
+**Use Cases:**
+- Creating new countoption records
+- Retrieving countoption information
+- Updating countoption data
+
+**Important Notes:**
+- This message provides the countoption representation
 
 #### StatsOption {#statsoption}
 
