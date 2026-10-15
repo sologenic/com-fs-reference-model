@@ -16,6 +16,7 @@ package client
 
 import (
 	"context"
+	"sync"
 
 	grpcdef "github.com/sologenic/com-fs-reference-model"
 	grpcclient "github.com/sologenic/com-fs-utils-internal-lib/go/grpc-client"
@@ -26,6 +27,7 @@ const endpoint = "REFERENCE_STORE"
 var (
 	client     *grpcdef.ReferenceServiceClient
 	grpcClient *grpcclient.GRPCClient
+	once       sync.Once
 )
 
 func initClient() {
@@ -35,15 +37,11 @@ func initClient() {
 }
 
 func Client() *grpcdef.ReferenceServiceClient {
-	if client == nil {
-		initClient()
-	}
+	once.Do(initClient)
 	return client
 }
 
 func AuthCtx(ctx context.Context) context.Context {
-	if grpcClient == nil {
-		initClient()
-	}
+	once.Do(initClient)
 	return grpcClient.AuthCtx(ctx)
 }
