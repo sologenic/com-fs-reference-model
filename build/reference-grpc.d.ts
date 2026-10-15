@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import { ChannelCredentials, Client, Metadata } from "@grpc/grpc-js";
-import type { CallOptions, ClientOptions, ClientUnaryCall, handleUnaryCall, ServiceError, UntypedServiceImplementation } from "@grpc/grpc-js";
+/// <reference types="node" />
+import { type CallOptions, ChannelCredentials, Client, type ClientOptions, type ClientUnaryCall, type handleUnaryCall, Metadata, type ServiceError, type UntypedServiceImplementation } from "@grpc/grpc-js";
 import { Empty } from "./google/protobuf/Empty";
 import { CountOption, Counts, ID, Reference, ReferenceKey, References, SelectOptions, StatsOption } from "./reference";
 export declare const protobufPackage = "reference";
@@ -101,4 +101,5 @@ export interface ReferenceServiceClient extends Client {
 export declare const ReferenceServiceClient: {
     new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): ReferenceServiceClient;
     service: typeof ReferenceServiceService;
+    serviceName: string;
 };

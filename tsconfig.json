@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "strict": true,
     "declaration": true,
-    "module": "CommonJS",
+    "module": "ES2022",
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
