@@ -27,18 +27,21 @@ message ID {
     string Account = 1;
     string ReferenceKey = 2;
     ReferenceType ReferenceType = 3;
-    metadata.Network Network = 4;
+    reserved 4;
+    reserved "Network";
     string OrganizationID = 5; // UUID
 }
 
 message ReferenceID {
     int64 ReferenceID = 1;
-    metadata.Network Network = 2;
+    reserved 2;
+    reserved "Network";
 }
 
 message ReferenceKey {
     string ReferenceKey = 1;
-    metadata.Network Network = 2;
+    reserved 2;
+    reserved "Network";
     string Account = 3;
 }
 
@@ -66,14 +69,16 @@ message SelectOptions {
     int32 Limit = 3;
     ReferenceType ReferenceType = 4;
     repeated string ReferenceKey = 5;
-    metadata.Network Network = 6;
+    reserved 6;
+    reserved "Network";
     string OrganizationID = 7; // UUID
 }
 
 message CountOption {
     string Account = 1;
     ReferenceType ReferenceType = 2;
-    metadata.Network Network = 3;
+    reserved 3;
+    reserved "Network";
     repeated string ReferenceKey = 4;
     optional VoteType VoteType = 5;
 }
@@ -81,7 +86,8 @@ message CountOption {
 message StatsOption {
     Period Period = 1;
     ReferenceType ReferenceType = 2;
-    metadata.Network Network = 3;
+    reserved 3;
+    reserved "Network";
     repeated string ReferenceKey = 4;
     optional VoteType VoteType = 5;
 }
@@ -94,7 +100,8 @@ message Count {
     int64 Count = 1;
     ReferenceType ReferenceType = 2;
     string ReferenceKey = 3;
-    metadata.Network Network = 4;
+    reserved 4;
+    reserved "Network";
     VoteType VoteType = 5;
 }
 
