@@ -25,18 +25,17 @@ import (
 const endpoint = "REFERENCE_STORE"
 
 var (
-	client     *grpcdef.ReferenceServiceClient
+	client     grpcdef.ReferenceServiceClient
 	grpcClient *grpcclient.GRPCClient
 	once       sync.Once
 )
 
 func initClient() {
 	grpcClient = grpcclient.InitClient(endpoint)
-	cl := grpcdef.NewReferenceServiceClient(grpcClient.Conn)
-	client = &cl
+	client = grpcdef.NewReferenceServiceClient(grpcClient.Conn)
 }
 
-func Client() *grpcdef.ReferenceServiceClient {
+func Client() grpcdef.ReferenceServiceClient {
 	once.Do(initClient)
 	return client
 }
