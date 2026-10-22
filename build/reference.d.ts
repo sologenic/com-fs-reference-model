@@ -1,6 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
-import { MetaData, Network } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
+import { MetaData } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export declare const protobufPackage = "reference";
 export declare enum ReferenceType {
     DO_NOT_USE = 0,
@@ -52,17 +52,14 @@ export interface ID {
     Account: string;
     ReferenceKey: string;
     ReferenceType: ReferenceType;
-    Network: Network;
     /** UUID */
     OrganizationID: string;
 }
 export interface ReferenceID {
     ReferenceID: number;
-    Network: Network;
 }
 export interface ReferenceKey {
     ReferenceKey: string;
-    Network: Network;
     Account: string;
 }
 export interface References {
@@ -74,21 +71,18 @@ export interface SelectOptions {
     Limit: number;
     ReferenceType: ReferenceType;
     ReferenceKey: string[];
-    Network: Network;
     /** UUID */
     OrganizationID: string;
 }
 export interface CountOption {
     Account: string;
     ReferenceType: ReferenceType;
-    Network: Network;
     ReferenceKey: string[];
     VoteType?: VoteType | undefined;
 }
 export interface StatsOption {
     Period: Period;
     ReferenceType: ReferenceType;
-    Network: Network;
     ReferenceKey: string[];
     VoteType?: VoteType | undefined;
 }
@@ -99,7 +93,6 @@ export interface Count {
     Count: number;
     ReferenceType: ReferenceType;
     ReferenceKey: string;
-    Network: Network;
     VoteType: VoteType;
 }
 export declare const Reference: {
@@ -117,7 +110,7 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } | undefined;
         MetaData?: {
-            Network?: Network | undefined;
+            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -144,12 +137,12 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } & { [K in Exclude<keyof I["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
         MetaData?: ({
-            Network?: Network | undefined;
+            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
         } & {
-            Network?: Network | undefined;
+            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -174,7 +167,7 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } | undefined;
         MetaData?: {
-            Network?: Network | undefined;
+            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -201,12 +194,12 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } & { [K_4 in Exclude<keyof I_1["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
         MetaData?: ({
-            Network?: Network | undefined;
+            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
         } & {
-            Network?: Network | undefined;
+            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -267,26 +260,22 @@ export declare const ID: {
         Account?: string | undefined;
         ReferenceKey?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
         ReferenceKey?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & { [K in Exclude<keyof I, keyof ID>]: never; }>(base?: I | undefined): ID;
     fromPartial<I_1 extends {
         Account?: string | undefined;
         ReferenceKey?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
         ReferenceKey?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof ID>]: never; }>(object: I_1): ID;
 };
@@ -297,18 +286,14 @@ export declare const ReferenceID: {
     toJSON(message: ReferenceID): unknown;
     create<I extends {
         ReferenceID?: number | undefined;
-        Network?: Network | undefined;
     } & {
         ReferenceID?: number | undefined;
-        Network?: Network | undefined;
-    } & { [K in Exclude<keyof I, keyof ReferenceID>]: never; }>(base?: I | undefined): ReferenceID;
+    } & { [K in Exclude<keyof I, "ReferenceID">]: never; }>(base?: I | undefined): ReferenceID;
     fromPartial<I_1 extends {
         ReferenceID?: number | undefined;
-        Network?: Network | undefined;
     } & {
         ReferenceID?: number | undefined;
-        Network?: Network | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof ReferenceID>]: never; }>(object: I_1): ReferenceID;
+    } & { [K_1 in Exclude<keyof I_1, "ReferenceID">]: never; }>(object: I_1): ReferenceID;
 };
 export declare const ReferenceKey: {
     encode(message: ReferenceKey, writer?: _m0.Writer): _m0.Writer;
@@ -317,20 +302,16 @@ export declare const ReferenceKey: {
     toJSON(message: ReferenceKey): unknown;
     create<I extends {
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         Account?: string | undefined;
     } & {
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         Account?: string | undefined;
     } & { [K in Exclude<keyof I, keyof ReferenceKey>]: never; }>(base?: I | undefined): ReferenceKey;
     fromPartial<I_1 extends {
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         Account?: string | undefined;
     } & {
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         Account?: string | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof ReferenceKey>]: never; }>(object: I_1): ReferenceKey;
 };
@@ -350,7 +331,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -372,7 +353,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -392,7 +373,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -419,12 +400,12 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } & { [K in Exclude<keyof I["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
             MetaData?: ({
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
             } & {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -448,7 +429,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -471,7 +452,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -493,7 +474,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -513,7 +494,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -540,12 +521,12 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } & { [K_6 in Exclude<keyof I_1["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
             MetaData?: ({
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
             } & {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -569,7 +550,7 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: Network | undefined;
+                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -593,7 +574,6 @@ export declare const SelectOptions: {
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string[] | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
@@ -601,7 +581,6 @@ export declare const SelectOptions: {
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: (string[] & string[] & { [K in Exclude<keyof I["ReferenceKey"], keyof string[]>]: never; }) | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & { [K_1 in Exclude<keyof I, keyof SelectOptions>]: never; }>(base?: I | undefined): SelectOptions;
     fromPartial<I_1 extends {
@@ -610,7 +589,6 @@ export declare const SelectOptions: {
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string[] | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & {
         Account?: string | undefined;
@@ -618,7 +596,6 @@ export declare const SelectOptions: {
         Limit?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: (string[] & string[] & { [K_2 in Exclude<keyof I_1["ReferenceKey"], keyof string[]>]: never; }) | undefined;
-        Network?: Network | undefined;
         OrganizationID?: string | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof SelectOptions>]: never; }>(object: I_1): SelectOptions;
 };
@@ -630,26 +607,22 @@ export declare const CountOption: {
     create<I extends {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: string[] | undefined;
         VoteType?: VoteType | undefined;
     } & {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: (string[] & string[] & { [K in Exclude<keyof I["ReferenceKey"], keyof string[]>]: never; }) | undefined;
         VoteType?: VoteType | undefined;
     } & { [K_1 in Exclude<keyof I, keyof CountOption>]: never; }>(base?: I | undefined): CountOption;
     fromPartial<I_1 extends {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: string[] | undefined;
         VoteType?: VoteType | undefined;
     } & {
         Account?: string | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: (string[] & string[] & { [K_2 in Exclude<keyof I_1["ReferenceKey"], keyof string[]>]: never; }) | undefined;
         VoteType?: VoteType | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof CountOption>]: never; }>(object: I_1): CountOption;
@@ -662,26 +635,22 @@ export declare const StatsOption: {
     create<I extends {
         Period?: Period | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: string[] | undefined;
         VoteType?: VoteType | undefined;
     } & {
         Period?: Period | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: (string[] & string[] & { [K in Exclude<keyof I["ReferenceKey"], keyof string[]>]: never; }) | undefined;
         VoteType?: VoteType | undefined;
     } & { [K_1 in Exclude<keyof I, keyof StatsOption>]: never; }>(base?: I | undefined): StatsOption;
     fromPartial<I_1 extends {
         Period?: Period | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: string[] | undefined;
         VoteType?: VoteType | undefined;
     } & {
         Period?: Period | undefined;
         ReferenceType?: ReferenceType | undefined;
-        Network?: Network | undefined;
         ReferenceKey?: (string[] & string[] & { [K_2 in Exclude<keyof I_1["ReferenceKey"], keyof string[]>]: never; }) | undefined;
         VoteType?: VoteType | undefined;
     } & { [K_3 in Exclude<keyof I_1, keyof StatsOption>]: never; }>(object: I_1): StatsOption;
@@ -696,7 +665,6 @@ export declare const Counts: {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         }[] | undefined;
     } & {
@@ -704,25 +672,21 @@ export declare const Counts: {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         }[] & ({
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         } & {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         } & { [K in Exclude<keyof I["Counts"][number], keyof Count>]: never; })[] & { [K_1 in Exclude<keyof I["Counts"], keyof {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         }[]>]: never; }) | undefined;
     } & { [K_2 in Exclude<keyof I, "Counts">]: never; }>(base?: I | undefined): Counts;
@@ -731,7 +695,6 @@ export declare const Counts: {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         }[] | undefined;
     } & {
@@ -739,25 +702,21 @@ export declare const Counts: {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         }[] & ({
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         } & {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         } & { [K_3 in Exclude<keyof I_1["Counts"][number], keyof Count>]: never; })[] & { [K_4 in Exclude<keyof I_1["Counts"], keyof {
             Count?: number | undefined;
             ReferenceType?: ReferenceType | undefined;
             ReferenceKey?: string | undefined;
-            Network?: Network | undefined;
             VoteType?: VoteType | undefined;
         }[]>]: never; }) | undefined;
     } & { [K_5 in Exclude<keyof I_1, "Counts">]: never; }>(object: I_1): Counts;
@@ -771,26 +730,22 @@ export declare const Count: {
         Count?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
     } & {
         Count?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
     } & { [K in Exclude<keyof I, keyof Count>]: never; }>(base?: I | undefined): Count;
     fromPartial<I_1 extends {
         Count?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
     } & {
         Count?: number | undefined;
         ReferenceType?: ReferenceType | undefined;
         ReferenceKey?: string | undefined;
-        Network?: Network | undefined;
         VoteType?: VoteType | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof Count>]: never; }>(object: I_1): Count;
 };

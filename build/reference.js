@@ -7,7 +7,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
-import { MetaData, networkFromJSON, networkToJSON, } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
+import { MetaData } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export const protobufPackage = "reference";
 export var ReferenceType;
 (function (ReferenceType) {
@@ -351,7 +351,7 @@ export const ReferenceDetails = {
     },
 };
 function createBaseID() {
-    return { Account: "", ReferenceKey: "", ReferenceType: 0, Network: 0, OrganizationID: "" };
+    return { Account: "", ReferenceKey: "", ReferenceType: 0, OrganizationID: "" };
 }
 export const ID = {
     encode(message, writer = _m0.Writer.create()) {
@@ -363,9 +363,6 @@ export const ID = {
         }
         if (message.ReferenceType !== 0) {
             writer.uint32(24).int32(message.ReferenceType);
-        }
-        if (message.Network !== 0) {
-            writer.uint32(32).int32(message.Network);
         }
         if (message.OrganizationID !== "") {
             writer.uint32(42).string(message.OrganizationID);
@@ -397,12 +394,6 @@ export const ID = {
                     }
                     message.ReferenceType = reader.int32();
                     continue;
-                case 4:
-                    if (tag !== 32) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
                 case 5:
                     if (tag !== 42) {
                         break;
@@ -422,7 +413,6 @@ export const ID = {
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
             OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
         };
     },
@@ -437,9 +427,6 @@ export const ID = {
         if (message.ReferenceType !== 0) {
             obj.ReferenceType = referenceTypeToJSON(message.ReferenceType);
         }
-        if (message.Network !== 0) {
-            obj.Network = networkToJSON(message.Network);
-        }
         if (message.OrganizationID !== "") {
             obj.OrganizationID = message.OrganizationID;
         }
@@ -449,26 +436,22 @@ export const ID = {
         return ID.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d;
         const message = createBaseID();
         message.Account = (_a = object.Account) !== null && _a !== void 0 ? _a : "";
         message.ReferenceKey = (_b = object.ReferenceKey) !== null && _b !== void 0 ? _b : "";
         message.ReferenceType = (_c = object.ReferenceType) !== null && _c !== void 0 ? _c : 0;
-        message.Network = (_d = object.Network) !== null && _d !== void 0 ? _d : 0;
-        message.OrganizationID = (_e = object.OrganizationID) !== null && _e !== void 0 ? _e : "";
+        message.OrganizationID = (_d = object.OrganizationID) !== null && _d !== void 0 ? _d : "";
         return message;
     },
 };
 function createBaseReferenceID() {
-    return { ReferenceID: 0, Network: 0 };
+    return { ReferenceID: 0 };
 }
 export const ReferenceID = {
     encode(message, writer = _m0.Writer.create()) {
         if (message.ReferenceID !== 0) {
             writer.uint32(8).int64(message.ReferenceID);
-        }
-        if (message.Network !== 0) {
-            writer.uint32(16).int32(message.Network);
         }
         return writer;
     },
@@ -485,12 +468,6 @@ export const ReferenceID = {
                     }
                     message.ReferenceID = longToNumber(reader.int64());
                     continue;
-                case 2:
-                    if (tag !== 16) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -500,18 +477,12 @@ export const ReferenceID = {
         return message;
     },
     fromJSON(object) {
-        return {
-            ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0,
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
-        };
+        return { ReferenceID: isSet(object.ReferenceID) ? globalThis.Number(object.ReferenceID) : 0 };
     },
     toJSON(message) {
         const obj = {};
         if (message.ReferenceID !== 0) {
             obj.ReferenceID = Math.round(message.ReferenceID);
-        }
-        if (message.Network !== 0) {
-            obj.Network = networkToJSON(message.Network);
         }
         return obj;
     },
@@ -519,23 +490,19 @@ export const ReferenceID = {
         return ReferenceID.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b;
+        var _a;
         const message = createBaseReferenceID();
         message.ReferenceID = (_a = object.ReferenceID) !== null && _a !== void 0 ? _a : 0;
-        message.Network = (_b = object.Network) !== null && _b !== void 0 ? _b : 0;
         return message;
     },
 };
 function createBaseReferenceKey() {
-    return { ReferenceKey: "", Network: 0, Account: "" };
+    return { ReferenceKey: "", Account: "" };
 }
 export const ReferenceKey = {
     encode(message, writer = _m0.Writer.create()) {
         if (message.ReferenceKey !== "") {
             writer.uint32(10).string(message.ReferenceKey);
-        }
-        if (message.Network !== 0) {
-            writer.uint32(16).int32(message.Network);
         }
         if (message.Account !== "") {
             writer.uint32(26).string(message.Account);
@@ -555,12 +522,6 @@ export const ReferenceKey = {
                     }
                     message.ReferenceKey = reader.string();
                     continue;
-                case 2:
-                    if (tag !== 16) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
                 case 3:
                     if (tag !== 26) {
                         break;
@@ -578,7 +539,6 @@ export const ReferenceKey = {
     fromJSON(object) {
         return {
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
         };
     },
@@ -586,9 +546,6 @@ export const ReferenceKey = {
         const obj = {};
         if (message.ReferenceKey !== "") {
             obj.ReferenceKey = message.ReferenceKey;
-        }
-        if (message.Network !== 0) {
-            obj.Network = networkToJSON(message.Network);
         }
         if (message.Account !== "") {
             obj.Account = message.Account;
@@ -599,11 +556,10 @@ export const ReferenceKey = {
         return ReferenceKey.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c;
+        var _a, _b;
         const message = createBaseReferenceKey();
         message.ReferenceKey = (_a = object.ReferenceKey) !== null && _a !== void 0 ? _a : "";
-        message.Network = (_b = object.Network) !== null && _b !== void 0 ? _b : 0;
-        message.Account = (_c = object.Account) !== null && _c !== void 0 ? _c : "";
+        message.Account = (_b = object.Account) !== null && _b !== void 0 ? _b : "";
         return message;
     },
 };
@@ -664,15 +620,7 @@ export const References = {
     },
 };
 function createBaseSelectOptions() {
-    return {
-        Account: "",
-        BeforeReferenceID: 0,
-        Limit: 0,
-        ReferenceType: 0,
-        ReferenceKey: [],
-        Network: 0,
-        OrganizationID: "",
-    };
+    return { Account: "", BeforeReferenceID: 0, Limit: 0, ReferenceType: 0, ReferenceKey: [], OrganizationID: "" };
 }
 export const SelectOptions = {
     encode(message, writer = _m0.Writer.create()) {
@@ -690,9 +638,6 @@ export const SelectOptions = {
         }
         for (const v of message.ReferenceKey) {
             writer.uint32(42).string(v);
-        }
-        if (message.Network !== 0) {
-            writer.uint32(48).int32(message.Network);
         }
         if (message.OrganizationID !== "") {
             writer.uint32(58).string(message.OrganizationID);
@@ -736,12 +681,6 @@ export const SelectOptions = {
                     }
                     message.ReferenceKey.push(reader.string());
                     continue;
-                case 6:
-                    if (tag !== 48) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
                 case 7:
                     if (tag !== 58) {
                         break;
@@ -765,7 +704,6 @@ export const SelectOptions = {
             ReferenceKey: globalThis.Array.isArray(object === null || object === void 0 ? void 0 : object.ReferenceKey)
                 ? object.ReferenceKey.map((e) => globalThis.String(e))
                 : [],
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
             OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : "",
         };
     },
@@ -787,9 +725,6 @@ export const SelectOptions = {
         if ((_a = message.ReferenceKey) === null || _a === void 0 ? void 0 : _a.length) {
             obj.ReferenceKey = message.ReferenceKey;
         }
-        if (message.Network !== 0) {
-            obj.Network = networkToJSON(message.Network);
-        }
         if (message.OrganizationID !== "") {
             obj.OrganizationID = message.OrganizationID;
         }
@@ -799,20 +734,19 @@ export const SelectOptions = {
         return SelectOptions.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f;
         const message = createBaseSelectOptions();
         message.Account = (_a = object.Account) !== null && _a !== void 0 ? _a : "";
         message.BeforeReferenceID = (_b = object.BeforeReferenceID) !== null && _b !== void 0 ? _b : 0;
         message.Limit = (_c = object.Limit) !== null && _c !== void 0 ? _c : 0;
         message.ReferenceType = (_d = object.ReferenceType) !== null && _d !== void 0 ? _d : 0;
         message.ReferenceKey = ((_e = object.ReferenceKey) === null || _e === void 0 ? void 0 : _e.map((e) => e)) || [];
-        message.Network = (_f = object.Network) !== null && _f !== void 0 ? _f : 0;
-        message.OrganizationID = (_g = object.OrganizationID) !== null && _g !== void 0 ? _g : "";
+        message.OrganizationID = (_f = object.OrganizationID) !== null && _f !== void 0 ? _f : "";
         return message;
     },
 };
 function createBaseCountOption() {
-    return { Account: "", ReferenceType: 0, Network: 0, ReferenceKey: [], VoteType: undefined };
+    return { Account: "", ReferenceType: 0, ReferenceKey: [], VoteType: undefined };
 }
 export const CountOption = {
     encode(message, writer = _m0.Writer.create()) {
@@ -821,9 +755,6 @@ export const CountOption = {
         }
         if (message.ReferenceType !== 0) {
             writer.uint32(16).int32(message.ReferenceType);
-        }
-        if (message.Network !== 0) {
-            writer.uint32(24).int32(message.Network);
         }
         for (const v of message.ReferenceKey) {
             writer.uint32(34).string(v);
@@ -852,12 +783,6 @@ export const CountOption = {
                     }
                     message.ReferenceType = reader.int32();
                     continue;
-                case 3:
-                    if (tag !== 24) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
                 case 4:
                     if (tag !== 34) {
                         break;
@@ -882,7 +807,6 @@ export const CountOption = {
         return {
             Account: isSet(object.Account) ? globalThis.String(object.Account) : "",
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
             ReferenceKey: globalThis.Array.isArray(object === null || object === void 0 ? void 0 : object.ReferenceKey)
                 ? object.ReferenceKey.map((e) => globalThis.String(e))
                 : [],
@@ -898,9 +822,6 @@ export const CountOption = {
         if (message.ReferenceType !== 0) {
             obj.ReferenceType = referenceTypeToJSON(message.ReferenceType);
         }
-        if (message.Network !== 0) {
-            obj.Network = networkToJSON(message.Network);
-        }
         if ((_a = message.ReferenceKey) === null || _a === void 0 ? void 0 : _a.length) {
             obj.ReferenceKey = message.ReferenceKey;
         }
@@ -913,18 +834,17 @@ export const CountOption = {
         return CountOption.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d;
         const message = createBaseCountOption();
         message.Account = (_a = object.Account) !== null && _a !== void 0 ? _a : "";
         message.ReferenceType = (_b = object.ReferenceType) !== null && _b !== void 0 ? _b : 0;
-        message.Network = (_c = object.Network) !== null && _c !== void 0 ? _c : 0;
-        message.ReferenceKey = ((_d = object.ReferenceKey) === null || _d === void 0 ? void 0 : _d.map((e) => e)) || [];
-        message.VoteType = (_e = object.VoteType) !== null && _e !== void 0 ? _e : undefined;
+        message.ReferenceKey = ((_c = object.ReferenceKey) === null || _c === void 0 ? void 0 : _c.map((e) => e)) || [];
+        message.VoteType = (_d = object.VoteType) !== null && _d !== void 0 ? _d : undefined;
         return message;
     },
 };
 function createBaseStatsOption() {
-    return { Period: 0, ReferenceType: 0, Network: 0, ReferenceKey: [], VoteType: undefined };
+    return { Period: 0, ReferenceType: 0, ReferenceKey: [], VoteType: undefined };
 }
 export const StatsOption = {
     encode(message, writer = _m0.Writer.create()) {
@@ -933,9 +853,6 @@ export const StatsOption = {
         }
         if (message.ReferenceType !== 0) {
             writer.uint32(16).int32(message.ReferenceType);
-        }
-        if (message.Network !== 0) {
-            writer.uint32(24).int32(message.Network);
         }
         for (const v of message.ReferenceKey) {
             writer.uint32(34).string(v);
@@ -964,12 +881,6 @@ export const StatsOption = {
                     }
                     message.ReferenceType = reader.int32();
                     continue;
-                case 3:
-                    if (tag !== 24) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
                 case 4:
                     if (tag !== 34) {
                         break;
@@ -994,7 +905,6 @@ export const StatsOption = {
         return {
             Period: isSet(object.Period) ? periodFromJSON(object.Period) : 0,
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
             ReferenceKey: globalThis.Array.isArray(object === null || object === void 0 ? void 0 : object.ReferenceKey)
                 ? object.ReferenceKey.map((e) => globalThis.String(e))
                 : [],
@@ -1010,9 +920,6 @@ export const StatsOption = {
         if (message.ReferenceType !== 0) {
             obj.ReferenceType = referenceTypeToJSON(message.ReferenceType);
         }
-        if (message.Network !== 0) {
-            obj.Network = networkToJSON(message.Network);
-        }
         if ((_a = message.ReferenceKey) === null || _a === void 0 ? void 0 : _a.length) {
             obj.ReferenceKey = message.ReferenceKey;
         }
@@ -1025,13 +932,12 @@ export const StatsOption = {
         return StatsOption.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d;
         const message = createBaseStatsOption();
         message.Period = (_a = object.Period) !== null && _a !== void 0 ? _a : 0;
         message.ReferenceType = (_b = object.ReferenceType) !== null && _b !== void 0 ? _b : 0;
-        message.Network = (_c = object.Network) !== null && _c !== void 0 ? _c : 0;
-        message.ReferenceKey = ((_d = object.ReferenceKey) === null || _d === void 0 ? void 0 : _d.map((e) => e)) || [];
-        message.VoteType = (_e = object.VoteType) !== null && _e !== void 0 ? _e : undefined;
+        message.ReferenceKey = ((_c = object.ReferenceKey) === null || _c === void 0 ? void 0 : _c.map((e) => e)) || [];
+        message.VoteType = (_d = object.VoteType) !== null && _d !== void 0 ? _d : undefined;
         return message;
     },
 };
@@ -1088,7 +994,7 @@ export const Counts = {
     },
 };
 function createBaseCount() {
-    return { Count: 0, ReferenceType: 0, ReferenceKey: "", Network: 0, VoteType: 0 };
+    return { Count: 0, ReferenceType: 0, ReferenceKey: "", VoteType: 0 };
 }
 export const Count = {
     encode(message, writer = _m0.Writer.create()) {
@@ -1100,9 +1006,6 @@ export const Count = {
         }
         if (message.ReferenceKey !== "") {
             writer.uint32(26).string(message.ReferenceKey);
-        }
-        if (message.Network !== 0) {
-            writer.uint32(32).int32(message.Network);
         }
         if (message.VoteType !== 0) {
             writer.uint32(40).int32(message.VoteType);
@@ -1134,12 +1037,6 @@ export const Count = {
                     }
                     message.ReferenceKey = reader.string();
                     continue;
-                case 4:
-                    if (tag !== 32) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
                 case 5:
                     if (tag !== 40) {
                         break;
@@ -1159,7 +1056,6 @@ export const Count = {
             Count: isSet(object.Count) ? globalThis.Number(object.Count) : 0,
             ReferenceType: isSet(object.ReferenceType) ? referenceTypeFromJSON(object.ReferenceType) : 0,
             ReferenceKey: isSet(object.ReferenceKey) ? globalThis.String(object.ReferenceKey) : "",
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : 0,
             VoteType: isSet(object.VoteType) ? voteTypeFromJSON(object.VoteType) : 0,
         };
     },
@@ -1174,9 +1070,6 @@ export const Count = {
         if (message.ReferenceKey !== "") {
             obj.ReferenceKey = message.ReferenceKey;
         }
-        if (message.Network !== 0) {
-            obj.Network = networkToJSON(message.Network);
-        }
         if (message.VoteType !== 0) {
             obj.VoteType = voteTypeToJSON(message.VoteType);
         }
@@ -1186,13 +1079,12 @@ export const Count = {
         return Count.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d;
         const message = createBaseCount();
         message.Count = (_a = object.Count) !== null && _a !== void 0 ? _a : 0;
         message.ReferenceType = (_b = object.ReferenceType) !== null && _b !== void 0 ? _b : 0;
         message.ReferenceKey = (_c = object.ReferenceKey) !== null && _c !== void 0 ? _c : "";
-        message.Network = (_d = object.Network) !== null && _d !== void 0 ? _d : 0;
-        message.VoteType = (_e = object.VoteType) !== null && _e !== void 0 ? _e : 0;
+        message.VoteType = (_d = object.VoteType) !== null && _d !== void 0 ? _d : 0;
         return message;
     },
 };
