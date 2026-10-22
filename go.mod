@@ -1,6 +1,6 @@
 module github.com/sologenic/com-fs-reference-model
 
-go 1.27.1
+go 1.27.3
 
 require (
 	github.com/sologenic/com-fs-utils-internal-lib/go/grpc-client v0.0.0-20261021192929-ec070c03bfa4
