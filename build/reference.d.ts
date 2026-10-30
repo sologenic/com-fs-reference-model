@@ -110,7 +110,6 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } | undefined;
         MetaData?: {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -137,12 +136,10 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } & { [K in Exclude<keyof I["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
         MetaData?: ({
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
         } & {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -167,7 +164,6 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } | undefined;
         MetaData?: {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -194,12 +190,10 @@ export declare const Reference: {
             OrganizationID?: string | undefined;
         } & { [K_4 in Exclude<keyof I_1["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
         MetaData?: ({
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
         } & {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
             UpdatedByAccount?: string | undefined;
@@ -331,7 +325,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -353,7 +346,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -373,7 +365,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -400,12 +391,10 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } & { [K in Exclude<keyof I["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
             MetaData?: ({
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
             } & {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -429,7 +418,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -452,7 +440,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -474,7 +461,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -494,7 +480,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -521,12 +506,10 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } & { [K_6 in Exclude<keyof I_1["References"][number]["Reference"], keyof ReferenceDetails>]: never; }) | undefined;
             MetaData?: ({
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
             } & {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
@@ -550,7 +533,6 @@ export declare const References: {
                 OrganizationID?: string | undefined;
             } | undefined;
             MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedByAccount?: string | undefined;
