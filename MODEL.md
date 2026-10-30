@@ -54,7 +54,7 @@ The `Reference` message provides reference data and operations.
 | Field Name | Type | Required/Optional | Description |
 |------------|------|-------------------|-------------|
 | Reference | `ReferenceDetails` | Required | Reference field |
-| MetaData | `metadata.MetaData` | Required | Metadata information including network and version details |
+| MetaData | `metadata.MetaData` | Required | Metadata information including version details |
 | Audit | `audit.Audit` | Required | Audit trail information for tracking changes and access |
 
 **Use Cases:**
@@ -100,7 +100,6 @@ The `ID` message provides id data and operations.
 | Account | `string` | Required | Account value |
 | ReferenceKey | `string` | Required | ReferenceKey value |
 | ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
 | OrganizationID | `string` | Required | UUID |
 
 **Use Cases:**
@@ -121,7 +120,6 @@ The `ReferenceID` message provides referenceid data and operations.
 | Field Name | Type | Required/Optional | Description |
 |------------|------|-------------------|-------------|
 | ReferenceID | `int64` | Required | Unique identifier for the reference |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
 
 **Use Cases:**
 - Creating new referenceid records
@@ -140,7 +138,6 @@ The `ReferenceKey` message provides referencekey data and operations.
 | Field Name | Type | Required/Optional | Description |
 |------------|------|-------------------|-------------|
 | ReferenceKey | `string` | Required | ReferenceKey value |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
 | Account | `string` | Required | Account value |
 
 **Use Cases:**
@@ -182,7 +179,6 @@ The `SelectOptions` message represents a collection of selectoption with paginat
 | Limit | `int32` | Required | Limit field |
 | ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
 | ReferenceKey | `string` | Optional | ReferenceKey value |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
 | OrganizationID | `string` | Required | UUID |
 
 **Use Cases:**
@@ -205,7 +201,6 @@ The `CountOption` message provides countoption data and operations.
 |------------|------|-------------------|-------------|
 | Account | `string` | Required | Account value |
 | ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
 | ReferenceKey | `string` | Optional | ReferenceKey value |
 | VoteType | `VoteType` | Optional | Type classification for this item (see related enum) |
 
@@ -227,7 +222,6 @@ The `StatsOption` message provides statsoption data and operations.
 |------------|------|-------------------|-------------|
 | Period | `Period` | Required | Period field |
 | ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
 | ReferenceKey | `string` | Optional | ReferenceKey value |
 | VoteType | `VoteType` | Optional | Type classification for this item (see related enum) |
 
@@ -268,7 +262,6 @@ The `Count` message provides count data and operations.
 | Count | `int64` | Required | Count field |
 | ReferenceType | `ReferenceType` | Required | Type classification for this item (see related enum) |
 | ReferenceKey | `string` | Required | ReferenceKey value |
-| Network | `metadata.Network` | Required | Metadata information including network and version details |
 | VoteType | `VoteType` | Required | Type classification for this item (see related enum) |
 
 **Use Cases:**
